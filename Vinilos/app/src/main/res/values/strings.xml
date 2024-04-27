@@ -3,4 +3,6 @@
     <string name="visitor_text">Visitante</string>
     <string name="collector_text">Coleccionista</string>
     <string name="logo_content_description">Logo de la app Vinilos</string>
+    <string name="title_activity_album_detail">AlbumDetailActivity</string>
+    <string name="back_button_text">Dar atrás</string>
 </resources>
