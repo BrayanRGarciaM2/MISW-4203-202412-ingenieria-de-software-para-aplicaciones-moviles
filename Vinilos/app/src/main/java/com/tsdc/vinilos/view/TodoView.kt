@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -22,6 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -53,12 +55,12 @@ fun TodoView(vm: TodoViewModel) {
             TopAppBar(
                 title = {
                     Row {
-                        Text("Todos")
+                        Text("Artistas")
                     }
                 })
         },
         content = {
-            if (vm.errorMessage.isEmpty()) {
+            if (vm.errorMessage.isEmpty() && vm.todoList.isNotEmpty()) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     LazyColumn(modifier = Modifier.fillMaxHeight()) {
                         items(vm.todoList) { todo ->
@@ -75,14 +77,17 @@ fun TodoView(vm: TodoViewModel) {
                                             .padding(0.dp, 0.dp, 16.dp, 0.dp)
                                     ) {
                                         Text(
-                                            todo.title,
+                                            todo.name,
                                             maxLines = 1,
                                             overflow = TextOverflow.Ellipsis
                                         )
                                     }
                                     Spacer(modifier = Modifier.width(16.dp))
-                                    Checkbox(checked = todo.completed, onCheckedChange = null)
-                                }
+                                    Text(
+                                        todo.description,
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis
+                                    )     }
                                 Divider()
                             }
                         }

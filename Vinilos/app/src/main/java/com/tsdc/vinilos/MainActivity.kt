@@ -21,10 +21,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.core.content.ContextCompat.getString
+import com.tsdc.vinilos.modelView.TodoViewModel
 import com.tsdc.vinilos.ui.theme.VinilosTheme
+import com.tsdc.vinilos.view.TodoView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        val vm = TodoViewModel()
         super.onCreate(savedInstanceState)
         setContent {
             VinilosTheme {
@@ -33,7 +36,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainView()
+                    TodoView(vm)
                 }
             }
         }

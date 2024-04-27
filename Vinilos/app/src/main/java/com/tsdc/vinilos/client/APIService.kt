@@ -5,13 +5,31 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 data class Todo(
-    var userId: Int,
-    var id: Int,
-    var title: String,
-    var completed: Boolean
+    val id: Long,
+    val name: String,
+    val image: String,
+    val description: String,
+    val birthDate: String,
+    val albums: List<Album>,
+    val performerPrizes: List<PerformerPrize>
 )
 
-const val BASE_URL = "http://localhost:3000/"
+data class Album (
+    val id: Long,
+    val name: String,
+    val cover: String,
+    val releaseDate: String,
+    val description: String,
+    val genre: String,
+    val recordLabel: String
+)
+
+data class PerformerPrize (
+    val id: Long,
+    val premiationDate: String
+)
+
+const val BASE_URL = "http://10.0.2.2:3000/"
 
 interface APIService {
     @GET("musicians")
