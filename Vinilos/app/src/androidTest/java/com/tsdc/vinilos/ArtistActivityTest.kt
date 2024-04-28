@@ -1,7 +1,8 @@
 package com.tsdc.vinilos
 
-
+import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onFirst
@@ -14,23 +15,31 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class MainActivityTest {
+class ArtistActivityTest {
+
     @get:Rule
     val activityRule = createAndroidComposeRule<MainActivity>()
 
     @Test
-    fun testClickFirstButton() {
-        // Add a delay to give time for the view to load
+    fun testClickVisitantButtonAndArtistButton() {
 
         activityRule.onNodeWithText("Visitante").performClick()
-        activityRule.onNodeWithText("Albumes").performClick()
-        activityRule.onNodeWithText("Nombre del álbum").assertIsDisplayed()
+        activityRule.onNodeWithText("Artistas").performClick()
         Thread.sleep(2000)
-        activityRule.onAllNodesWithTag("AlbumListItem").onFirst().performClick()
+        val artist =  activityRule.onAllNodesWithTag("ArtistaListItem").onFirst()
+        artist.assertIsDisplayed()
+        val image =  activityRule.onAllNodesWithTag("imagen").onFirst()
+        image.assertExists()
+    }
 
-        // Check if the "AlbumDetailScreen" is displayed
-        activityRule.onNodeWithTag("AlbumDetailScreen").assertIsDisplayed()
+    @Test
+    fun testClickSecondButton() {
+        activityRule.onNodeWithText("Visitante").performClick()
+        activityRule.onNodeWithText("Artistas").performClick()
+        val name = activityRule.onAllNodesWithTag("name").onFirst()
+        name.assertExists()
     }
 }
