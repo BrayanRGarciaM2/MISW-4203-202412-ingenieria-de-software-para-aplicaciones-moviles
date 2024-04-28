@@ -5,4 +5,9 @@
     <string name="logo_content_description">Logo de la app Vinilos</string>
     <string name="title_activity_album_detail">AlbumDetailActivity</string>
     <string name="back_button_text">Dar atrás</string>
+    <string name="song_text">Canción</string>
+    <string name="duration_text">Duración</string>
+    <string name="title_activity_album_list">AlbumListActivity</string>
+    <string name="album_catalog_text">Catálogo de Álbumes</string>
+    <string name="album_name_text">Nombre del álbum</string>
 </resources>

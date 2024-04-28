@@ -1,10 +1,10 @@
-package com.tsdc.vinilos.album.vista
+package com.tsdc.vinilos.album.vista.detail
 
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import com.tsdc.vinilos.album.album2
-import com.tsdc.vinilos.album.repository.Album
+import com.tsdc.vinilos.album.repository.data.model.Album
 
 @Composable
 fun AlbumDetailScreen(album: Album?) {

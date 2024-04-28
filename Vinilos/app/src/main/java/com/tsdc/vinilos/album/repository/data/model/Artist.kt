@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.album.repository
+package com.tsdc.vinilos.album.repository.data.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

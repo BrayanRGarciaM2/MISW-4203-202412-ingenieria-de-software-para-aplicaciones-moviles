@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.album.repository
+package com.tsdc.vinilos.album.repository.data.model
 
 
 import android.os.Parcelable
@@ -14,5 +14,6 @@ data class Album(
     val description: String,
     val genre: String,
     val recordLabel: String,
-    val performers: List<Artist>
+    val performers: List<Artist>,
+    val tracks: List<Song>
 ) : Parcelable

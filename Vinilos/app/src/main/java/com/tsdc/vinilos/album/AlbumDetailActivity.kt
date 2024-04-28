@@ -11,10 +11,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.tsdc.vinilos.album.repository.Album
-import com.tsdc.vinilos.album.repository.Artist
+import com.tsdc.vinilos.album.repository.data.model.Album
+import com.tsdc.vinilos.album.repository.data.model.Artist
+import com.tsdc.vinilos.album.repository.data.model.Song
 import com.tsdc.vinilos.album.ui.theme.VinilosTheme
-import com.tsdc.vinilos.album.vista.AlbumDetailScreen
+import com.tsdc.vinilos.album.vista.detail.AlbumDetailScreen
 import java.util.Date
 
 val album2 = Album(
@@ -22,7 +23,7 @@ val album2 = Album(
     "hola",
     "https://i.pinimg.com/564x/aa/5f/ed/aa5fed7fac61cc8f41d1e79db917a7cd.jpg",
     Date(),
-    "",
+    "Buscando América es el primer álbum de la banda de Rubén Blades y Seis del Solar lanzado en 1984. La producción, bajo el sello Elektra, fusiona diferentes ritmos musicales tales como la salsa, reggae, rock, y el jazz latino. El disco fue grabado en Eurosound Studios en Nueva York entre mayo y agosto de 1983.",
     "",
     "",
     listOf(
@@ -33,6 +34,16 @@ val album2 = Album(
             "",
             Date()
         )
+    ),
+    listOf(
+        Song(0, "Desapariciones", "5:00"),
+        Song(1, "Desapariciones 2", "5:00"),
+        Song(2, "Desapariciones 3", "5:00"),
+        Song(3, "Desapariciones 4", "5:00"),
+        Song(4, "Desapariciones 5", "5:00"),
+        Song(5, "Desapariciones 6", "5:00"),
+        Song(6, "Desapariciones 7", "5:00"),
+        Song(7, "Desapariciones 8", "5:00"),
     )
 )
 
@@ -58,7 +69,7 @@ class AlbumDetailActivity : ComponentActivity() {
 
     companion object {
         private const val ALBUM_ID = "album_id"
-        fun newIntent(context: Context, album: Album) =
+        fun newIntent(context: Context, album: Album): Intent =
             Intent(context, AlbumDetailActivity::class.java).apply {
                 putExtra(ALBUM_ID, album)
             }

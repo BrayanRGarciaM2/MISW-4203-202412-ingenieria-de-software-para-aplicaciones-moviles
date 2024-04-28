@@ -1,8 +1,9 @@
-package com.tsdc.vinilos.album.vista
+package com.tsdc.vinilos.album.vista.detail
 
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
@@ -24,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import com.tsdc.vinilos.R
-import com.tsdc.vinilos.album.repository.Album
+import com.tsdc.vinilos.album.repository.data.model.Album
 import java.util.Calendar
 import java.util.Date
 
@@ -34,7 +35,9 @@ fun AlbumDetailBar(album: Album?) {
     TopAppBar(
         title = {
             Column(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(end = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
@@ -44,7 +47,7 @@ fun AlbumDetailBar(album: Album?) {
                     style = TextStyle(
                         fontWeight = FontWeight.SemiBold,
                         fontStyle = FontStyle.Italic,
-                        fontSize = 20.sp,
+                        fontSize = 16.sp,
                         color = Color.White
                     )
                 )
@@ -53,7 +56,7 @@ fun AlbumDetailBar(album: Album?) {
                     color = Color.White,
                     style = TextStyle(
                         fontWeight = FontWeight.Light,
-                        fontSize = 16.sp,
+                        fontSize = 14.sp,
                         letterSpacing = 0.15.sp,
                         color = Color.White
                     )
