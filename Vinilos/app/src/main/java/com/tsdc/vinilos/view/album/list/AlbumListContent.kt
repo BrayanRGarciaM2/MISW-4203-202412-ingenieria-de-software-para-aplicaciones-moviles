@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -80,9 +81,22 @@ fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel
             contentPadding = paddingValues,
             state = scrollState
         ) {
-            items(albumsToShow.size) { albumId ->
-                albumsToShow[albumId]?.let { AlbumListItem(album = it) }
+            if(albumsToShow.size != 0){
+                items(albumsToShow.size) { albumId ->
+                    albumsToShow[albumId]?.let { AlbumListItem(album = it) }
+                }
+            }else{
+                item {
+                    Text(
+                        text = "No se encontraron álbumes para mostrar",
+                        style = TextStyle(
+                            fontSize = 18.sp,
+                        ),
+                        modifier = Modifier.testTag("AlbumListError")
+                    )
+                }
             }
+
         }
     }
 }
@@ -94,6 +108,7 @@ fun AlbumListItem(album: Album) {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
+            .testTag("AlbumListItem")
             .clickable {
                 startActivity(
                     context,

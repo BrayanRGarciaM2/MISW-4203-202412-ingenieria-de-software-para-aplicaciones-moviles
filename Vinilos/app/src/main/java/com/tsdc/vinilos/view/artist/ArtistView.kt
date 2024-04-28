@@ -30,6 +30,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -92,9 +94,11 @@ class ArtistViewActivity : ComponentActivity() {
                                     Row(
                                         modifier = Modifier
                                             .fillMaxWidth()
+                                            .testTag("ArtistaListItem")
                                     ) {
                                         AsyncImage(
                                             modifier = Modifier
+                                                .testTag("imagen")
                                                 .width(80.dp)
                                                 .height(80.dp)
                                                 .padding(10.dp),
@@ -105,6 +109,7 @@ class ArtistViewActivity : ComponentActivity() {
                                             text = artist.name,
                                             fontSize = 20.sp,
                                             modifier = Modifier
+                                                .testTag("name")
                                                 .height(80.dp)
                                                 .fillMaxWidth()
                                                 .wrapContentHeight(align = Alignment.CenterVertically)
@@ -115,8 +120,19 @@ class ArtistViewActivity : ComponentActivity() {
                                 }
                             }
                         } else {
-                            Text(vm.errorMessage)
-                            Log.d("Error Mensaje", vm.errorMessage)
+                            LazyColumn(modifier = Modifier
+                                .fillMaxHeight()
+                                .padding(it)) {
+                                item {
+                                    Text(
+                                        text = "No se encontraron artistas para mostrar",
+                                        style = TextStyle(
+                                            fontSize = 18.sp,
+                                        ),
+                                        modifier = Modifier.testTag("ArtistaListError")
+                                    )
+                                }
+                            }
                         }
 
                     }

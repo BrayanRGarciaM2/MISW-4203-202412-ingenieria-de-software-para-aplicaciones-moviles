@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -86,7 +87,8 @@ fun AlbumDetailMainContent(album: Album?) {
         Image(
             painter = BitmapPainter(bitmap!!.asImageBitmap()),
             contentDescription = album?.description,
-            modifier = Modifier.size(200.dp)
+            modifier = Modifier.size(200.dp).testTag("AlbumDetailImage")
+
         )
     }
     Text(
@@ -97,7 +99,7 @@ fun AlbumDetailMainContent(album: Album?) {
             fontSize = 24.sp,
             color = Color.White
         ),
-        modifier = Modifier.padding(top = 16.dp)
+        modifier = Modifier.padding(top = 16.dp).testTag("AlbumDetailTitle")
     )
     Text(
         text = album?.description.orEmpty(),
@@ -108,7 +110,7 @@ fun AlbumDetailMainContent(album: Album?) {
             color = Color.White
         ),
         textAlign = TextAlign.Center,
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier.padding(16.dp).testTag("AlbumDetailDescription")
     )
 }
 
@@ -128,6 +130,7 @@ fun AlbumDetailSongs(album: Album?) {
                 modifier = Modifier
                     .padding(16.dp)
                     .padding(start = 16.dp)
+
             )
             Text(
                 text = getString(LocalContext.current, R.string.duration_text),
@@ -151,7 +154,7 @@ fun AlbumDetailSongs(album: Album?) {
                         fontSize = 16.sp,
                         color = Color.White
                     ),
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier.padding(16.dp).testTag("AlbumDetailSongTitle")
                 )
                 Text(
                     text = track.duration,
@@ -164,6 +167,7 @@ fun AlbumDetailSongs(album: Album?) {
                     modifier = Modifier
                         .padding(16.dp)
                         .padding(end = 16.dp)
+                        .testTag("AlbumDetailSongDuration")
                 )
             }
         }
