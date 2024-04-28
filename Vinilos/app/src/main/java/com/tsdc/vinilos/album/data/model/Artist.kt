@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.album.repository.data.model
+package com.tsdc.vinilos.album.data.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -10,5 +10,5 @@ data class Artist(
     val name: String,
     val image: String,
     val description: String,
-    val birthDate: Date
+    val birthDate: Date?,
 ) : Parcelable

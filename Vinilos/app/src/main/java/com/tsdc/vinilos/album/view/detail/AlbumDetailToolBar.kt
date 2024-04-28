@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.album.vista.detail
+package com.tsdc.vinilos.album.view.detail
 
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.Column
@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import com.tsdc.vinilos.R
-import com.tsdc.vinilos.album.repository.data.model.Album
+import com.tsdc.vinilos.album.data.model.Album
 import java.util.Calendar
 import java.util.Date
 

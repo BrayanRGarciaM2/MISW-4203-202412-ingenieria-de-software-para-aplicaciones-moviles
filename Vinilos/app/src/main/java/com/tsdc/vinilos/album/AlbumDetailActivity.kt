@@ -11,11 +11,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.tsdc.vinilos.album.repository.data.model.Album
-import com.tsdc.vinilos.album.repository.data.model.Artist
-import com.tsdc.vinilos.album.repository.data.model.Song
+import com.tsdc.vinilos.album.data.model.Album
+import com.tsdc.vinilos.album.data.model.Artist
+import com.tsdc.vinilos.album.data.model.Song
 import com.tsdc.vinilos.album.ui.theme.VinilosTheme
-import com.tsdc.vinilos.album.vista.detail.AlbumDetailScreen
+import com.tsdc.vinilos.album.view.detail.AlbumDetailScreen
 import java.util.Date
 
 val album2 = Album(

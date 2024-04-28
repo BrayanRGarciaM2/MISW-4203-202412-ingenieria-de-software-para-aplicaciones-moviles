@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.album.vista.list
+package com.tsdc.vinilos.album.view.list
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
@@ -6,10 +6,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.tsdc.vinilos.album.repository.data.model.Album
+import com.tsdc.vinilos.album.presentation.AlbumListViewModel
 
 @Composable
-fun AlbumListScreen(albums: List<Album>) {
+fun AlbumListScreen(viewModel: AlbumListViewModel) {
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -18,7 +19,7 @@ fun AlbumListScreen(albums: List<Album>) {
         contentColor = Color.Black
     ) { paddingValues ->
         Surface(color = Color.Black) {
-            AlbumListContent(paddingValues, albums)
+            AlbumListContent(paddingValues, viewModel)
         }
     }
 }

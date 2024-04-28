@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.album.vista.detail
+package com.tsdc.vinilos.album.view.detail
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.getString
 import com.tsdc.vinilos.R
 import com.tsdc.vinilos.album.album2
-import com.tsdc.vinilos.album.repository.data.model.Album
+import com.tsdc.vinilos.album.data.model.Album
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.album.repository.data.model
+package com.tsdc.vinilos.album.data.model
 
 
 import android.os.Parcelable
