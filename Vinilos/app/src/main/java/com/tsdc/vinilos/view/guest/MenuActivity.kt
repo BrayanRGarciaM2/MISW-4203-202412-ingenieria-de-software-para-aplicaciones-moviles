@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.collector
+package com.tsdc.vinilos.view.guest
 
 import android.content.Intent
 import android.os.Bundle
@@ -19,27 +19,30 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
 import com.tsdc.vinilos.MainActivity
 import com.tsdc.vinilos.R
 import com.tsdc.vinilos.ui.theme.VinilosTheme
-import com.tsdc.vinilos.view.ArtistViewActivity
+import com.tsdc.vinilos.view.album.list.AlbumListActivity
+import com.tsdc.vinilos.view.artist.ArtistViewActivity
 
-class CollectorMenuActivity : ComponentActivity() {
+class MenuActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            initCollectorMenuActivity()
+            InitMenuActivity()
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun initCollectorMenuActivity() {
+fun InitMenuActivity() {
     val localContext = LocalContext.current
 
     VinilosTheme {
@@ -62,56 +65,67 @@ fun initCollectorMenuActivity() {
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 30.dp)
+                        .padding(top = 50.dp)
                 ) {
                     LazyColumn {
                         item {
                             Button(
-                                modifier = Modifier.fillMaxWidth().padding(horizontal = 100.dp, vertical = 10.dp),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 100.dp, vertical = 10.dp),
+                                onClick = {
+                                    startActivity(
+                                        localContext,
+                                        Intent(localContext, AlbumListActivity::class.java),
+                                        null
+                                    )
+                                }
+                            ) {
+                                Text(text = "Albumes", color = Color.White)
+                            }
+                        }
+                        item {
+                            Button(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 100.dp, vertical = 10.dp),
+                                onClick = {
+                                    localContext.startActivity(
+                                        Intent(
+                                            localContext,
+                                            ArtistViewActivity::class.java
+                                        )
+                                    )
+                                }
+                            ) {
+                                Text(text = "Artistas", color = Color.White)
+                            }
+                        }
+                        item {
+                            Button(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 100.dp, vertical = 10.dp),
                                 onClick = { /*TODO*/ }
                             ) {
-                                Text(text = "Albumes")
+                                Text(text = "Coleccionistas", color = Color.White)
                             }
                         }
                         item {
                             Button(
-                                modifier = Modifier.fillMaxWidth().padding(horizontal = 100.dp, vertical = 10.dp),
-                                onClick = { localContext.startActivity(Intent(localContext, ArtistViewActivity::class.java))  }
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 100.dp, vertical = 10.dp),
+                                onClick = {
+                                    localContext.startActivity(
+                                        Intent(
+                                            localContext,
+                                            MainActivity::class.java
+                                        )
+                                    )
+                                }
                             ) {
-                                Text(text = "Artistas")
-                            }
-                        }
-                        item {
-                            Button(
-                                modifier = Modifier.fillMaxWidth().padding(horizontal = 100.dp, vertical = 10.dp),
-                                onClick = { /*TODO*/ }
-                            ) {
-                                Text(text = "Coleccionistas")
-                            }
-                        }
-
-                        item {
-                            Button(
-                                modifier = Modifier.fillMaxWidth().padding(horizontal = 100.dp, vertical = 10.dp),
-                                onClick = { /*TODO*/ }
-                            ) {
-                                Text(text = "Agregar artista")
-                            }
-                        }
-                        item {
-                            Button(
-                                modifier = Modifier.fillMaxWidth().padding(horizontal = 100.dp, vertical = 10.dp),
-                                onClick = { /*TODO*/ }
-                            ) {
-                                Text(text = "Crear un álbum")
-                            }
-                        }
-                        item {
-                            Button(
-                                modifier = Modifier.fillMaxWidth().padding(horizontal = 100.dp, vertical = 10.dp),
-                                onClick = { localContext.startActivity(Intent(localContext, MainActivity::class.java)) }
-                            ) {
-                                Text(text = "Volver")
+                                Text(text = "Volver", color = Color.White)
                             }
                         }
                     }

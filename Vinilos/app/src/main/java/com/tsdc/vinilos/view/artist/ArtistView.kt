@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.view
+package com.tsdc.vinilos.view.artist
 
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -33,7 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.tsdc.vinilos.presentation.ArtistViewModel
+import com.tsdc.vinilos.presentation.artist.ArtistViewModel
 import com.tsdc.vinilos.ui.theme.VinilosTheme
 
 class ArtistViewActivity : ComponentActivity() {
@@ -76,7 +76,7 @@ class ArtistViewActivity : ComponentActivity() {
                                     super.finish()
                                 }) {
                                     Icon(
-                                        imageVector = Icons.Filled.ArrowBack,
+                                        imageVector = Icons.Default.KeyboardArrowLeft,
                                         contentDescription = "Botón de volver"
                                     )
                                 }
@@ -104,7 +104,8 @@ class ArtistViewActivity : ComponentActivity() {
                                         Text(
                                             text = artist.name,
                                             fontSize = 20.sp,
-                                            modifier = Modifier.height(80.dp)
+                                            modifier = Modifier
+                                                .height(80.dp)
                                                 .fillMaxWidth()
                                                 .wrapContentHeight(align = Alignment.CenterVertically)
                                         )

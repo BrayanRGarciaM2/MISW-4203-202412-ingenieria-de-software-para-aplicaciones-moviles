@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.collector
+package com.tsdc.vinilos.view.collector
 
 import android.content.Intent
 import android.os.Bundle
@@ -36,14 +36,14 @@ class CollectorLogInActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            initLoginActivity()
+            InitLoginActivity()
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun initLoginActivity() {
+fun InitLoginActivity() {
     val localContext = LocalContext.current
     var collectorUser by remember {
         mutableStateOf("Hello")
