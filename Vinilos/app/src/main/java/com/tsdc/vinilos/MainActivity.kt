@@ -1,5 +1,6 @@
 package com.tsdc.vinilos
 
+//import androidx.constraintlayout.compose.ConstraintLayout
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,14 +19,14 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-//import androidx.constraintlayout.compose.ConstraintLayout
-import com.tsdc.vinilos.collector.CollectorLogInActivity
-import com.tsdc.vinilos.guest.MenuActivity
 import com.tsdc.vinilos.ui.theme.VinilosTheme
+import com.tsdc.vinilos.view.collector.CollectorLogInActivity
+import com.tsdc.vinilos.view.guest.MenuActivity
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,13 +73,13 @@ fun PickRolesActivity(){
                             }
 
                         ){
-                            Text(text = "Visitante")
+                            Text(text = "Visitante", color = Color.White)
                         }
                         //Botón Rol coleccionista
                         Button(
                             onClick = { localContext.startActivity(Intent(localContext, CollectorLogInActivity::class.java)) }
                         ){
-                            Text(text = "Coleccionista")
+                            Text(text = "Coleccionista", color = Color.White)
                         }
                     }
                 }

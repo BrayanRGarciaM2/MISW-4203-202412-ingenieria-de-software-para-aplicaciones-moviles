@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
 
         android:allowBackup="true"
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".album.AlbumListActivity"
+            android:name=".view.album.list.AlbumListActivity"
             android:exported="true"
             android:label="@string/title_activity_album_list"
             android:theme="@style/Theme.Vinilos">
@@ -38,29 +38,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".album.AlbumDetailActivity"
+            android:name=".view.album.detail.AlbumDetailActivity"
             android:exported="true"
             android:label="@string/title_activity_album_detail"
             android:theme="@style/Theme.Vinilos">
 
         </activity>
         <activity
-            android:name=".collector.CollectorMenuActivity"
+            android:name=".view.collector.CollectorMenuActivity"
             android:exported="false"
             android:label="@string/title_activity_collector_menu"
             android:theme="@style/Theme.Vinilos" />
         <activity
-            android:name=".collector.CollectorLogInActivity"
+            android:name=".view.collector.CollectorLogInActivity"
             android:exported="false"
             android:label="@string/title_activity_collector_log_in"
             android:theme="@style/Theme.Vinilos" />
         <activity
-            android:name=".guest.MenuActivity"
+            android:name=".view.guest.MenuActivity"
             android:exported="false"
             android:label="@string/title_activity_menu"
             android:theme="@style/Theme.Vinilos" />
         <activity
-            android:name=".view.ArtistViewActivity"
+            android:name=".view.artist.ArtistViewActivity"
             android:exported="false"
             android:label="@string/title_activity_artists"
             android:theme="@style/Theme.Vinilos" />
