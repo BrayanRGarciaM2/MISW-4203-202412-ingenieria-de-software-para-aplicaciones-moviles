@@ -2,6 +2,9 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="EspressoTest">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -17,6 +20,9 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2024-04-28T17:26:49.269380400Z" />
         </State>
+      </entry>
+      <entry key="testClickFirstButton()">
+        <State />
       </entry>
     </value>
   </component>
