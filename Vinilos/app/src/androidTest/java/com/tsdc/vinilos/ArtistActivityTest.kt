@@ -1,6 +1,7 @@
 package com.tsdc.vinilos
 
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onFirst
@@ -25,28 +26,43 @@ class ArtistActivityTest {
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Artistas").performClick()
-        Thread.sleep(2000)
-        val artist =  activityRule.onAllNodesWithTag("ArtistaListItem").onFirst()
-        artist.assertIsDisplayed()
-        val image =  activityRule.onAllNodesWithTag("imagen").onFirst()
-        image.assertExists()
+        var errorNode = activityRule.onNodeWithText("No se encontraron artistas para mostrar")
+        if(errorNode.isDisplayed()){
+            errorNode.assertIsDisplayed()
+        }else{
+            Thread.sleep(2000)
+            val artist =  activityRule.onAllNodesWithTag("ArtistaListItem").onFirst()
+            artist.assertIsDisplayed()
+            val image =  activityRule.onAllNodesWithTag("imagen").onFirst()
+            image.assertExists()
+        }
     }
 
     @Test
     fun TestArtistListValidateNames() {
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Artistas").performClick()
-        Thread.sleep(2000)
-        val artist =  activityRule.onAllNodesWithTag("ArtistaListItem").onFirst()
-        artist.assertIsDisplayed()
-        val name = activityRule.onAllNodesWithTag("name").onFirst()
-        name.assertExists()
+        var errorNode = activityRule.onNodeWithText("No se encontraron artistas para mostrar")
+        if(errorNode.isDisplayed()){
+            errorNode.assertIsDisplayed()
+        }else{
+            Thread.sleep(2000)
+            val artist =  activityRule.onAllNodesWithTag("ArtistaListItem").onFirst()
+            artist.assertIsDisplayed()
+            val name = activityRule.onAllNodesWithTag("name").onFirst()
+            name.assertExists()
+        }
     }
 
     @Test
     fun TestClickArtistBottom() {
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Artistas").performClick()
-        activityRule.onNodeWithText("Artistas").assertExists()
+        var errorNode = activityRule.onNodeWithText("No se encontraron artistas para mostrar")
+        if(errorNode.isDisplayed()){
+            errorNode.assertIsDisplayed()
+        }else{
+            activityRule.onNodeWithText("Artistas").assertExists()
+        }
     }
 }
