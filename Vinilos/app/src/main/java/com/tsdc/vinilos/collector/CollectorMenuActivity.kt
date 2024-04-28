@@ -1,4 +1,4 @@
-package com.tsdc.vinilos
+package com.tsdc.vinilos.collector
 
 import android.content.Intent
 import android.os.Bundle
@@ -23,21 +23,23 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.tsdc.vinilos.MainActivity
+import com.tsdc.vinilos.R
 import com.tsdc.vinilos.ui.theme.VinilosTheme
 import com.tsdc.vinilos.view.ArtistViewActivity
 
-class MenuActivity : ComponentActivity() {
+class CollectorMenuActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            initMenuActivity()
+            initCollectorMenuActivity()
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun initMenuActivity() {
+fun initCollectorMenuActivity() {
     val localContext = LocalContext.current
 
     VinilosTheme {
@@ -60,7 +62,7 @@ fun initMenuActivity() {
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 50.dp)
+                        .padding(top = 30.dp)
                 ) {
                     LazyColumn {
                         item {
@@ -74,7 +76,7 @@ fun initMenuActivity() {
                         item {
                             Button(
                                 modifier = Modifier.fillMaxWidth().padding(horizontal = 100.dp, vertical = 10.dp),
-                                onClick = { localContext.startActivity(Intent(localContext, ArtistViewActivity::class.java)) }
+                                onClick = { localContext.startActivity(Intent(localContext, ArtistViewActivity::class.java))  }
                             ) {
                                 Text(text = "Artistas")
                             }
@@ -85,6 +87,23 @@ fun initMenuActivity() {
                                 onClick = { /*TODO*/ }
                             ) {
                                 Text(text = "Coleccionistas")
+                            }
+                        }
+
+                        item {
+                            Button(
+                                modifier = Modifier.fillMaxWidth().padding(horizontal = 100.dp, vertical = 10.dp),
+                                onClick = { /*TODO*/ }
+                            ) {
+                                Text(text = "Agregar artista")
+                            }
+                        }
+                        item {
+                            Button(
+                                modifier = Modifier.fillMaxWidth().padding(horizontal = 100.dp, vertical = 10.dp),
+                                onClick = { /*TODO*/ }
+                            ) {
+                                Text(text = "Crear un álbum")
                             }
                         }
                         item {

@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.client
+package com.tsdc.vinilos.data
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -29,7 +29,7 @@ data class PerformerPrize (
     val premiationDate: String
 )
 
-const val BASE_URL = "http://10.0.2.2:3000/"
+const val BASE_URL = "http://157.253.198.23:3000/"
 
 interface APIService {
     @GET("musicians")
