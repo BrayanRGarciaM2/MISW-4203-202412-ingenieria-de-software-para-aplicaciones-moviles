@@ -46,7 +46,7 @@ class CollectorLogInActivity : ComponentActivity() {
 fun InitLoginActivity() {
     val localContext = LocalContext.current
     var collectorUser by remember {
-        mutableStateOf("Hello")
+        mutableStateOf("")
     }
     VinilosTheme {
         // A surface container using the 'background' color from the theme
