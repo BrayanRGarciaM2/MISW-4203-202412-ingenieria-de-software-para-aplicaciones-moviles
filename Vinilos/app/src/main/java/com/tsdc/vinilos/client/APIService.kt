@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-data class Todo(
+data class Artist(
     val id: Long,
     val name: String,
     val image: String,
@@ -33,7 +33,7 @@ const val BASE_URL = "http://10.0.2.2:3000/"
 
 interface APIService {
     @GET("musicians")
-    suspend fun getTodos(): List<Todo>
+    suspend fun getArtists(): List<Artist>
 
     companion object {
         var apiService: APIService? = null

@@ -1,4 +1,9 @@
 <resources>
+    <string name="app_name">Vinilos</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_collector_log_in">CollectorLogInActivity</string>
+    <string name="title_activity_collector_menu">CollectorMenuActivity</string>
+    <string name="title_activity_artists">ArtistsActivity</string>
     <string name="app_name_text">Vinilos</string>
     <string name="visitor_text">Visitante</string>
     <string name="collector_text">Coleccionista</string>

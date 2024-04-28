@@ -7,21 +7,21 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tsdc.vinilos.client.APIService
-import com.tsdc.vinilos.client.Todo
+import com.tsdc.vinilos.client.Artist
 import kotlinx.coroutines.launch
 
-class TodoViewModel : ViewModel() {
-    private val _todoList = mutableStateListOf<Todo>()
+class ArtistViewModel : ViewModel() {
+    private val _artistList = mutableStateListOf<Artist>()
     var errorMessage: String by mutableStateOf("")
-    val todoList: List<Todo>
-        get() = _todoList
+    val artistList: List<Artist>
+        get() = _artistList
 
-    fun getTodoList() {
+    fun getArtistList() {
         viewModelScope.launch {
             val apiService = APIService.getInstance()
             try {
-                _todoList.clear()
-                _todoList.addAll(apiService.getTodos())
+                _artistList.clear()
+                _artistList.addAll(apiService.getArtists())
 
             } catch (e: Exception) {
                 errorMessage = e.message.toString()
