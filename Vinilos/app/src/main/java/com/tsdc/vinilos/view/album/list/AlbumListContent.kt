@@ -81,9 +81,22 @@ fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel
             contentPadding = paddingValues,
             state = scrollState
         ) {
-            items(albumsToShow.size) { albumId ->
-                albumsToShow[albumId]?.let { AlbumListItem(album = it) }
+            if(albumsToShow.size != 0){
+                items(albumsToShow.size) { albumId ->
+                    albumsToShow[albumId]?.let { AlbumListItem(album = it) }
+                }
+            }else{
+                item {
+                    Text(
+                        text = "No se encontraron álbumes para mostrar",
+                        style = TextStyle(
+                            fontSize = 18.sp,
+                        ),
+                        modifier = Modifier.testTag("AlbumListError")
+                    )
+                }
             }
+
         }
     }
 }

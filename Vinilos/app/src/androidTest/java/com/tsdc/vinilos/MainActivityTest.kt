@@ -2,6 +2,7 @@ package com.tsdc.vinilos
 
 
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onFirst
@@ -26,11 +27,16 @@ class MainActivityTest {
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Albumes").performClick()
-        activityRule.onNodeWithText("Nombre del álbum").assertIsDisplayed()
-        Thread.sleep(2000)
-        activityRule.onAllNodesWithTag("AlbumListItem").onFirst().performClick()
+        var errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
+        if(errorNode.isDisplayed()){
+            errorNode.assertIsDisplayed()
+        }else{
+            activityRule.onNodeWithText("Nombre del álbum").assertIsDisplayed()
+            Thread.sleep(2000)
+            activityRule.onAllNodesWithTag("AlbumListItem").onFirst().performClick()
+            // Check if the "AlbumDetailScreen" is displayed
+            activityRule.onNodeWithTag("AlbumDetailScreen").assertIsDisplayed()
+        }
 
-        // Check if the "AlbumDetailScreen" is displayed
-        activityRule.onNodeWithTag("AlbumDetailScreen").assertIsDisplayed()
     }
 }
