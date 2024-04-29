@@ -4,7 +4,7 @@ Vinilos app es la versión para dispositivos móvil de la aplicación web Vinilo
 La aplicación Vinilos ofrece diversas funcionalidades, como explorar el catálogo de álbumes musicales, obtener información detallada sobre cada álbum, descubrir artistas y consultar datos sobre coleccionistas. Además, los perfiles de coleccionistas permiten agregar álbumes al listado y marcar artistas favoritos.
 
 ## Consideraciones
-Vinilos app consume la API REST BackVynils por lo tanto es importante descargar ... https://github.com/TheSoftwareDesignLab/BackVynils.git
+Vinilos app consume la API REST [BackVynils](https://github.com/TheSoftwareDesignLab/BackVynils.git) por lo tanto es importante descargarlo.
 
 ## Pasos de ejecución del proyecto
 
