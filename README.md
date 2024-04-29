@@ -6,22 +6,15 @@ La aplicación Vinilos ofrece diversas funcionalidades, como explorar el catálo
 ## Consideraciones
 Vinilos app consume la API REST BackVynils por lo tanto es importante descargar ... https://github.com/TheSoftwareDesignLab/BackVynils.git
 
-## Instalación
+## Pasos de ejecución del proyecto
 
-Puedes descargar la última versión del APK desde la sección de "Releases" de este repositorio o haciendo clic en el siguiente enlace: [Descargar APK](enlace-al-apk)
+1. Configurar el backend de la aplicación "[Backvynils](https://github.com/TheSoftwareDesignLab/BackVynils.git)" para que se ejecute en el puerto 3000. Esto se puede lograr fácilmente utilizando Docker.
+2. Configurar la base de datos PostgreSQL de la aplicación para que se ejecute en el puerto 5432. También se puede hacer mediante Docker.
+3. Clonar este repositorio en tu entorno local.
+4. Abrir el proyecto utilizando Android Studio.
+5. Actualizar la dirección IP en el archivo [Constants.kt](https://github.com/BrayanRGarciaM2/MISW-4203-202412-ingenieria-de-software-para-aplicaciones-moviles/blob/main/Vinilos/app/src/main/java/com/tsdc/vinilos/utils/Constants.kt) con la correspondiente a localhost de tu máquina. Puede ser "10.0.2.2" o la IP de tu equipo.
+6. Ejecutar la aplicación desde Android Studio.
 
-Después de descargar el APK, sigue estos pasos para instalar la aplicación en tu dispositivo Android:
+## APK de la aplicación 
 
-1. Habilita la instalación de aplicaciones desde fuentes desconocidas en la configuración de seguridad de tu dispositivo. Esto permite la instalación de aplicaciones que no provienen de Google Play Store.
-2. Abre el APK descargado desde la carpeta de descargas en tu dispositivo.
-3. Sigue las instrucciones en pantalla para completar la instalación.
-4. Una vez instalada, podrás encontrar la aplicación en tu lista de aplicaciones.
-
-Nota: Es importante tener en cuenta que si la instalación de la aplicación se realiza desde el dispositivo móvil este no tendrá conexión a la API REST, para ello hay que reemplazar la ip de la url por la ip del  .....
-
-
-Para ejecutar la aplicación desde un emulador ...
-=======
-# Consideraciones para correr la aplicación exitosamente en local.
-
-Asegurarse de tener la aplicación de backend backvynils corriendo en el puerto: 3000
+En el repositorio podemos encontrar el apk generado de la aplicación: [app-release-unsigned.apk](https://github.com/BrayanRGarciaM2/MISW-4203-202412-ingenieria-de-software-para-aplicaciones-moviles/blob/main/app-release-unsigned.apk).
