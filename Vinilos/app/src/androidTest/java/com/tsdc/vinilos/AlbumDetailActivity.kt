@@ -10,7 +10,6 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import com.tsdc.vinilos.view.album.detail.AlbumDetailActivity
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
@@ -21,16 +20,17 @@ import org.junit.runner.RunWith
 class AlbumDetailActivity {
     @get:Rule
     val activityRule = createAndroidComposeRule<MainActivity>()
+
     @Test
     fun testAlbumDetailImage() {
         // Add a delay to give time for the view to load
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Albumes").performClick()
-        var errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
-        if(errorNode.isDisplayed()){
+        val errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
+        if (errorNode.isDisplayed()) {
             errorNode.assertIsDisplayed()
-        }else{
+        } else {
             activityRule.onNodeWithText("Nombre del álbum").assertIsDisplayed()
             Thread.sleep(2000)
             activityRule.onAllNodesWithTag("AlbumListItem").onFirst().performClick()
@@ -42,16 +42,17 @@ class AlbumDetailActivity {
 
 
     }
+
     @Test
     fun testAlbumDetailTitle() {
         // Add a delay to give time for the view to load
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Albumes").performClick()
-        var errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
-        if(errorNode.isDisplayed()){
+        val errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
+        if (errorNode.isDisplayed()) {
             errorNode.assertIsDisplayed()
-        }else {
+        } else {
             activityRule.onNodeWithText("Nombre del álbum").assertIsDisplayed()
             Thread.sleep(2000)
             activityRule.onAllNodesWithTag("AlbumListItem").onFirst().performClick()
@@ -63,16 +64,17 @@ class AlbumDetailActivity {
         }
 
     }
+
     @Test
     fun testAlbumDetailDescription() {
         // Add a delay to give time for the view to load
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Albumes").performClick()
-        var errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
-        if(errorNode.isDisplayed()){
+        val errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
+        if (errorNode.isDisplayed()) {
             errorNode.assertIsDisplayed()
-        }else {
+        } else {
             activityRule.onNodeWithText("Nombre del álbum").assertIsDisplayed()
             Thread.sleep(2000)
             activityRule.onAllNodesWithTag("AlbumListItem").onFirst().performClick()
@@ -90,10 +92,10 @@ class AlbumDetailActivity {
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Albumes").performClick()
-        var errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
-        if(errorNode.isDisplayed()){
+        val errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
+        if (errorNode.isDisplayed()) {
             errorNode.assertIsDisplayed()
-        }else {
+        } else {
             activityRule.onNodeWithText("Nombre del álbum").assertIsDisplayed()
             Thread.sleep(2000)
             activityRule.onAllNodesWithTag("AlbumListItem").onFirst().performClick()
@@ -111,10 +113,10 @@ class AlbumDetailActivity {
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Albumes").performClick()
-        var errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
-        if(errorNode.isDisplayed()){
+        val errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
+        if (errorNode.isDisplayed()) {
             errorNode.assertIsDisplayed()
-        }else {
+        } else {
             activityRule.onNodeWithText("Nombre del álbum").assertIsDisplayed()
             Thread.sleep(2000)
             activityRule.onAllNodesWithTag("AlbumListItem").onFirst().performClick()

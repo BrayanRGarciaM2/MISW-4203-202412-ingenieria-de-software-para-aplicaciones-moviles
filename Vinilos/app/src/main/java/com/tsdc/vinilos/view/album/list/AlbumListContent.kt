@@ -1,5 +1,6 @@
-package com.tsdc.vinilos.album.view.list
+package com.tsdc.vinilos.view.album.list
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -28,7 +29,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.getString
 import androidx.core.content.ContextCompat.startActivity
-import androidx.lifecycle.Observer
 import com.tsdc.vinilos.R
 import com.tsdc.vinilos.core.Output
 import com.tsdc.vinilos.data.model.Album
@@ -36,6 +36,7 @@ import com.tsdc.vinilos.presentation.album.AlbumListViewModel
 import com.tsdc.vinilos.view.album.detail.AlbumDetailActivity
 import kotlinx.coroutines.launch
 
+@SuppressLint("MutableCollectionMutableState")
 @Composable
 fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel) {
     val albums = mutableListOf<Album?>()
@@ -48,7 +49,7 @@ fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel
     Column(Modifier.fillMaxSize()) {
         LaunchedEffect(viewModel) {
             launch {
-                viewModel.getAlbums().observe(lifecycleOwner, Observer { result ->
+                viewModel.getAlbums().observe(lifecycleOwner) { result ->
                     when (result) {
                         is Output.Loading -> {
                             // Put a progress bar
@@ -64,7 +65,7 @@ fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel
 
                         }
                     }
-                })
+                }
             }
         }
         Text(
@@ -81,11 +82,11 @@ fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel
             contentPadding = paddingValues,
             state = scrollState
         ) {
-            if(albumsToShow.size != 0){
+            if (albumsToShow.size != 0) {
                 items(albumsToShow.size) { albumId ->
                     albumsToShow[albumId]?.let { AlbumListItem(album = it) }
                 }
-            }else{
+            } else {
                 item {
                     Text(
                         text = "No se encontraron álbumes para mostrar",
