@@ -1,9 +1,9 @@
 package com.tsdc.vinilos.view.artist
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -35,19 +34,27 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.tsdc.vinilos.data.remote.RemoteArtistDataSource
+import com.tsdc.vinilos.presentation.artist.ArtistListViewModelFactory
 import com.tsdc.vinilos.presentation.artist.ArtistViewModel
+import com.tsdc.vinilos.repository.artist.ArtistRepositoryImpl
 import com.tsdc.vinilos.ui.theme.VinilosTheme
 
-class ArtistViewActivity : ComponentActivity() {
+class ArtistViewActivity2 : ComponentActivity() {
 
+
+    val viewModel by viewModels<ArtistViewModel> {
+        ArtistListViewModelFactory(
+            ArtistRepositoryImpl(
+                RemoteArtistDataSource()
+            )
+        )
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
-        val vm = ArtistViewModel()
         super.onCreate(savedInstanceState )
         setContent {
-            InitArtistView(vm)
+            InitArtistView(viewModel)
         }
-
-
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -57,7 +64,7 @@ class ArtistViewActivity : ComponentActivity() {
         //var localContext = LocalContext.current
 
         LaunchedEffect(Unit, block = {
-            vm.getArtistList()
+            vm.getArtists()
         })
 
         VinilosTheme {
@@ -86,11 +93,11 @@ class ArtistViewActivity : ComponentActivity() {
                         )
                     },
                     content = {
-                        if (vm.errorMessage.isEmpty() && vm.artistList.isNotEmpty()) {
+                        if (vm.errorMessage.isEmpty() && vm.getArtists().isNotEmpty()) {
                             LazyColumn(modifier = Modifier
                                 .fillMaxHeight()
                                 .padding(it)) {
-                                items(vm.artistList) { artist ->
+                                items(vm.getArtists) { artist ->
                                     Row(
                                         modifier = Modifier
                                             .fillMaxWidth()
