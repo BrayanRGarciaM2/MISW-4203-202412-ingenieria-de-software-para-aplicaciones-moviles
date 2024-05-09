@@ -29,7 +29,7 @@ import com.tsdc.vinilos.MainActivity
 import com.tsdc.vinilos.R
 import com.tsdc.vinilos.ui.theme.VinilosTheme
 import com.tsdc.vinilos.view.album.list.AlbumListActivity
-import com.tsdc.vinilos.view.artist.ArtistViewActivity
+import com.tsdc.vinilos.view.artist.list.ArtistViewActivity
 
 class CollectorMenuActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
