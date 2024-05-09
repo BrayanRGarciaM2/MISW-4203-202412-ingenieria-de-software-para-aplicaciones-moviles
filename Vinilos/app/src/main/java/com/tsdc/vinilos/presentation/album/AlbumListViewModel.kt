@@ -13,7 +13,7 @@ class AlbumListViewModel(private val repo: AlbumRepository) : ViewModel() {
         try {
             emit(Output.Success(repo.getAlbums()))
         } catch (e: Exception) {
-            emit(Output.Failure<Exception>(e))
+            emit(Output.Failure(e))
         }
     }
 }

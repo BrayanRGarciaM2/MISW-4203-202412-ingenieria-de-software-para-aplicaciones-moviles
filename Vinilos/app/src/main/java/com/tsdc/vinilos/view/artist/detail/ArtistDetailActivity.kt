@@ -12,9 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.tsdc.vinilos.data.model.Album
 import com.tsdc.vinilos.data.model.Artist
-import com.tsdc.vinilos.view.album.detail.AlbumDetailActivity
 import com.tsdc.vinilos.view.artist.detail.ui.theme.VinilosTheme
 
 class ArtistDetailActivity : ComponentActivity() {
@@ -40,8 +38,8 @@ class ArtistDetailActivity : ComponentActivity() {
 
     companion object {
         private const val ARTIST_ID = "artist_id"
-        fun newIntent(context: Context, album: Album): Intent =
-            Intent(context, AlbumDetailActivity::class.java).apply {
+        fun newIntent(context: Context, album: Artist?): Intent =
+            Intent(context, ArtistDetailActivity::class.java).apply {
                 putExtra(ARTIST_ID, album)
             }
     }

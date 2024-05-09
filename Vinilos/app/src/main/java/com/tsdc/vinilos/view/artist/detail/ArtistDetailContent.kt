@@ -69,8 +69,10 @@ fun ArtistDetailMainContent(artist: Artist?) {
         launch {
             withContext(Dispatchers.IO) {
                 val url = artist?.image
-                val stream = URL(url).openStream()
-                bitmap = BitmapFactory.decodeStream(stream)
+                url?.let {
+                    val stream = URL(url).openStream()
+                    bitmap = BitmapFactory.decodeStream(stream)
+                }
             }
         }
     }
@@ -87,6 +89,7 @@ fun ArtistDetailMainContent(artist: Artist?) {
     }
     Text(
         text = artist?.name.orEmpty(),
+        textAlign = TextAlign.Center,
         color = Color.White,
         style = TextStyle(
             fontWeight = FontWeight.Bold,
