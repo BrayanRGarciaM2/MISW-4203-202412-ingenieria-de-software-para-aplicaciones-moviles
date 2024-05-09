@@ -10,12 +10,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.tsdc.vinilos.album.view.detail.AlbumDetailScreen
 import com.tsdc.vinilos.data.model.Album
 import com.tsdc.vinilos.ui.theme.VinilosTheme
 
 
 class AlbumDetailActivity : ComponentActivity() {
+    @Suppress("DEPRECATION")
     private val album: Album? by lazy {
         intent?.getParcelableExtra(ALBUM_ID) as? Album
     }
