@@ -77,8 +77,10 @@ fun AlbumDetailMainContent(album: Album?) {
         launch {
             withContext(Dispatchers.IO) {
                 val url = album?.cover
-                val stream = URL(url).openStream()
-                bitmap = BitmapFactory.decodeStream(stream)
+                url?.let {
+                    val stream = URL(url).openStream()
+                    bitmap = BitmapFactory.decodeStream(stream)
+                }
             }
         }
     }

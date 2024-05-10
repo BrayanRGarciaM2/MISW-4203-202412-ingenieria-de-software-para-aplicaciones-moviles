@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.tsdc.vinilos.data.remote.RemoteCollectorDataSource
+import com.tsdc.vinilos.data.remote.collector.RemoteCollectorDataSource
 import com.tsdc.vinilos.presentation.collector.CollectorListViewModelFactory
 import com.tsdc.vinilos.presentation.collector.CollectorListViewModel
 import com.tsdc.vinilos.repository.collector.CollectorRepositoryImpl

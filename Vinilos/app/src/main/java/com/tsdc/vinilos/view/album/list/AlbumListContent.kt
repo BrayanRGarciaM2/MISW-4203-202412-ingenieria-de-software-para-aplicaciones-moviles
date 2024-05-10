@@ -39,7 +39,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("MutableCollectionMutableState")
 @Composable
 fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel) {
-    val albums = mutableListOf<Album?>()
+    val albums = listOf<Album?>()
     var albumsToShow by remember {
         mutableStateOf(albums)
     }
