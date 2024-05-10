@@ -12,7 +12,7 @@ interface APIService {
     suspend fun getArtists(): List<Artist>
 
     companion object {
-        var apiService: APIService? = null
+        private var apiService: APIService? = null
         fun getInstance(): APIService {
             if (apiService == null) {
                 apiService = Retrofit.Builder()

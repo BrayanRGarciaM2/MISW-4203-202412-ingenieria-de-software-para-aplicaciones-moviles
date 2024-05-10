@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object AlbumRetrofitClient {
 
-    val webService by lazy {
+    val webService: AlbumService by lazy {
         Retrofit.Builder().baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create())).build()
             .create(AlbumService::class.java)

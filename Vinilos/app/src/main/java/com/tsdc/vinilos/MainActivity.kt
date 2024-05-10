@@ -23,6 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.getString
 import com.tsdc.vinilos.ui.theme.VinilosTheme
 import com.tsdc.vinilos.view.collector.login.CollectorLogInActivity
 import com.tsdc.vinilos.view.guest.MenuActivity
@@ -38,7 +39,7 @@ class MainActivity : ComponentActivity() {
 
 @Preview(showBackground = true)
 @Composable
-fun PickRolesActivity(){
+fun PickRolesActivity() {
     val localContext = LocalContext.current
 
     VinilosTheme {
@@ -56,29 +57,51 @@ fun PickRolesActivity(){
                             .height(300.dp)
                             .padding(top = 97.dp),
                         painter = painterResource(id = R.drawable.vinilos_icon),
-                        contentDescription = "Icono de Vinilos")
+                        contentDescription = getString(
+                            LocalContext.current,
+                            R.string.logo_content_description
+                        )
+                    )
                 }
                 item {
-                    Row (
+                    Row(
                         horizontalArrangement = Arrangement.SpaceEvenly,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 50.dp)
-                    ){
+                    ) {
                         //Botón Rol visitante
                         Button(
                             onClick = {
-                                localContext.startActivity(Intent(localContext, MenuActivity::class.java))
+                                localContext.startActivity(
+                                    Intent(
+                                        localContext,
+                                        MenuActivity::class.java
+                                    )
+                                )
                             }
 
-                        ){
-                            Text(text = "Visitante", color = Color.White)
+                        ) {
+                            Text(
+                                text = getString(LocalContext.current, R.string.visitor_text),
+                                color = Color.White
+                            )
                         }
                         //Botón Rol coleccionista
                         Button(
-                            onClick = { localContext.startActivity(Intent(localContext, CollectorLogInActivity::class.java)) }
-                        ){
-                            Text(text = "Coleccionista", color = Color.White)
+                            onClick = {
+                                localContext.startActivity(
+                                    Intent(
+                                        localContext,
+                                        CollectorLogInActivity::class.java
+                                    )
+                                )
+                            }
+                        ) {
+                            Text(
+                                text = getString(LocalContext.current, R.string.collector_text),
+                                color = Color.White
+                            )
                         }
                     }
                 }
