@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -20,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.Observer
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -40,7 +42,7 @@ fun CollectorListContent(paddingValues: PaddingValues, viewModel: CollectorListV
     Column(Modifier.fillMaxSize()) {
         LaunchedEffect(viewModel) {
             launch {
-                viewModel.getCollectors().observe(lifecycleOwner, Observer { result ->
+                viewModel.getCollectors().observe(lifecycleOwner)  { result ->
                     when (result) {
                         is Output.Loading -> {
                             // Put a progress bar
@@ -56,15 +58,29 @@ fun CollectorListContent(paddingValues: PaddingValues, viewModel: CollectorListV
 
                         }
                     }
-                })
+                }
             }
         }
         LazyColumn(
             contentPadding = paddingValues,
-            state = scrollState
+            state = scrollState,
+            modifier = Modifier
+                .testTag("CollectorItem")
         ) {
-            items(collectorToShow.size) { collectorId ->
-                collectorToShow[collectorId]?.let { CollectorListItem(collector = it) }
+            if (collectorToShow.size != 0) {
+                items(collectorToShow.size) { collectorId ->
+                    collectorToShow[collectorId]?.let { CollectorListItem(collector = it)}
+                }
+            } else {
+                item {
+                    Text(
+                        text = "No se encontrarón colecciones para mostrar",
+                        style = TextStyle(
+                            fontSize = 18.sp,
+                        ),
+                        modifier = Modifier.testTag("CollectorListError")
+                    )
+                }
             }
         }
     }
