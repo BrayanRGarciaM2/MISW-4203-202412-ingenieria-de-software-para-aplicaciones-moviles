@@ -33,7 +33,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun CollectorListContent(paddingValues: PaddingValues, viewModel: CollectorListViewModel) {
-    val collectors = mutableListOf<Collector?>()
+    val collectors = listOf<Collector?>()
     var collectorToShow by remember {
         mutableStateOf(collectors)
     }
