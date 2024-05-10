@@ -82,7 +82,7 @@ fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel
             contentPadding = paddingValues,
             state = scrollState
         ) {
-            if (albumsToShow.size != 0) {
+            if (albumsToShow.isNotEmpty()) {
                 items(albumsToShow.size) { albumId ->
                     albumsToShow[albumId]?.let { AlbumListItem(album = it) }
                 }
