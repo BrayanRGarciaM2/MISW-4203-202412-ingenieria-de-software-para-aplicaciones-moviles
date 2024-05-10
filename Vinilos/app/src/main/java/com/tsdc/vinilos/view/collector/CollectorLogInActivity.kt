@@ -62,7 +62,7 @@ fun InitLoginActivity() {
                             .fillMaxWidth()
                             .height(300.dp)
                             .padding(top = 97.dp),
-                        painter = painterResource(id = R.drawable.vinilos_icon),
+                        painter = painterResource(id = R.mipmap.vinilos_icon),
                         contentDescription = "Icono de Vinilos")
                 }
                 item {
