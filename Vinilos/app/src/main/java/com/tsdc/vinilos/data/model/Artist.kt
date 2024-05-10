@@ -7,7 +7,7 @@ import java.util.Date
 @Parcelize
 data class Artist(
     val id: Int,
-    val name: String,
+    var name: String,
     val image: String,
     val description: String,
     val birthDate: Date?,

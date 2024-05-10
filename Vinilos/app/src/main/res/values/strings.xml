@@ -14,4 +14,6 @@
     <string name="title_activity_album_list">AlbumListActivity</string>
     <string name="album_catalog_text">Catálogo de Álbumes</string>
     <string name="album_name_text">Nombre del álbum</string>
+    <string name="title_activity_artist_detail">ArtistDetailActivity</string>
+    <string name="artist_text">Artista</string>
 </resources>
