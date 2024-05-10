@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.view.collector
+package com.tsdc.vinilos.view.collector.login
 
 import android.content.Intent
 import android.os.Bundle
