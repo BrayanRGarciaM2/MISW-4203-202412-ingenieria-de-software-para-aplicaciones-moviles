@@ -11,9 +11,9 @@ class AlbumListViewModel(private val repo: AlbumRepository) : ViewModel() {
     fun getAlbums() = liveData(Dispatchers.IO) {
         emit(Output.Loading())
         try {
-            emit(Output.Success(repo.getAlbums()))
+            emit(Output.Success(data = repo.getAlbums()))
         } catch (e: Exception) {
-            emit(Output.Failure(e))
+            emit(Output.Failure(exception = e))
         }
     }
 }

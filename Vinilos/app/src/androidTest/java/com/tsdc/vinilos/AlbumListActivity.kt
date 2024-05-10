@@ -21,7 +21,7 @@ class AlbumListActivity {
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Albumes").performClick()
-        var errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
+        val errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
         if(errorNode.isDisplayed()){
             errorNode.assertIsDisplayed()
         }else{
@@ -40,7 +40,7 @@ class AlbumListActivity {
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Albumes").performClick()
-        var errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
+        val errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
         if(errorNode.isDisplayed()){
             errorNode.assertIsDisplayed()
         }else{
@@ -59,7 +59,7 @@ class AlbumListActivity {
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Albumes").performClick()
-        var errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
+        val errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
         if(errorNode.isDisplayed()){
             errorNode.assertIsDisplayed()
         }else{

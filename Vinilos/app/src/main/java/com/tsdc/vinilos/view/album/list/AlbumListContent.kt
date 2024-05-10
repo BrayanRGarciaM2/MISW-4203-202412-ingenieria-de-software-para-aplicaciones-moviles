@@ -1,5 +1,6 @@
-package com.tsdc.vinilos.album.view.list
+package com.tsdc.vinilos.view.album.list
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -35,6 +36,7 @@ import com.tsdc.vinilos.presentation.album.AlbumListViewModel
 import com.tsdc.vinilos.view.album.detail.AlbumDetailActivity
 import kotlinx.coroutines.launch
 
+@SuppressLint("MutableCollectionMutableState")
 @Composable
 fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel) {
     val albums = listOf<Album?>()

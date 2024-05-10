@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.album.view.detail
+package com.tsdc.vinilos.view.album.detail
 
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Scaffold

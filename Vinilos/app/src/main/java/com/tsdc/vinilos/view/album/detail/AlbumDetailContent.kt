@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.album.view.detail
+package com.tsdc.vinilos.view.album.detail
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap

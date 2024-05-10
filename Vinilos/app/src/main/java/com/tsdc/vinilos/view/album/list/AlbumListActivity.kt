@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.tsdc.vinilos.album.view.list.AlbumListScreen
 import com.tsdc.vinilos.data.remote.album.RemoteAlbumDataSource
 import com.tsdc.vinilos.presentation.album.AlbumListViewModel
 import com.tsdc.vinilos.presentation.album.AlbumListViewModelFactory

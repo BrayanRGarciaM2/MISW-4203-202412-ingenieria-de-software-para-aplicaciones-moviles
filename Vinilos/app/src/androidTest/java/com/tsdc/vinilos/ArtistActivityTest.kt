@@ -26,7 +26,7 @@ class ArtistActivityTest {
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Artistas").performClick()
-        var errorNode = activityRule.onNodeWithText("No se encontraron artistas para mostrar")
+        val errorNode = activityRule.onNodeWithText("No se encontraron artistas para mostrar")
         if(errorNode.isDisplayed()){
             errorNode.assertIsDisplayed()
         }else{
@@ -39,10 +39,10 @@ class ArtistActivityTest {
     }
 
     @Test
-    fun TestArtistListValidateNames() {
+    fun testArtistListValidateNames() {
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Artistas").performClick()
-        var errorNode = activityRule.onNodeWithText("No se encontraron artistas para mostrar")
+        val errorNode = activityRule.onNodeWithText("No se encontraron artistas para mostrar")
         if(errorNode.isDisplayed()){
             errorNode.assertIsDisplayed()
         }else{
@@ -55,10 +55,10 @@ class ArtistActivityTest {
     }
 
     @Test
-    fun TestClickArtistBottom() {
+    fun testClickArtistBottom() {
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Artistas").performClick()
-        var errorNode = activityRule.onNodeWithText("No se encontraron artistas para mostrar")
+        val errorNode = activityRule.onNodeWithText("No se encontraron artistas para mostrar")
         if(errorNode.isDisplayed()){
             errorNode.assertIsDisplayed()
         }else{

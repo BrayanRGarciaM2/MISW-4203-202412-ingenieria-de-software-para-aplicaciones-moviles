@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.album.view.list
+package com.tsdc.vinilos.view.album.list
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
