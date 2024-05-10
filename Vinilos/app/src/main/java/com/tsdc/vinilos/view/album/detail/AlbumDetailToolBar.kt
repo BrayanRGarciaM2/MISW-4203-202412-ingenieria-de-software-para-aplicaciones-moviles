@@ -1,15 +1,9 @@
 package com.tsdc.vinilos.view.album.detail
 
-import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -17,15 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat
-import com.tsdc.vinilos.R
 import com.tsdc.vinilos.data.model.Album
+import com.tsdc.vinilos.view.utils.ActionItems
 import java.util.Calendar
 import java.util.Date
 
@@ -72,22 +64,4 @@ fun getYearFromDate(date: Date?): Int {
     val calendar = Calendar.getInstance()
     calendar.time = date ?: Date()
     return calendar.get(Calendar.YEAR)
-}
-
-@Composable
-fun ActionItems() {
-    val activity = LocalContext.current as? ComponentActivity
-    // IconButton se beneficia del RowScope para ser colocado dentro de un Row
-    IconButton(onClick = { activity?.finish() }) {
-        Icon(
-            imageVector = Icons.Default.KeyboardArrowLeft,
-            contentDescription = ContextCompat.getString(
-                LocalContext.current,
-                R.string.back_button_text
-            ),
-            modifier = Modifier
-                .size(60.dp),
-            tint = Color.White
-        )
-    }
 }

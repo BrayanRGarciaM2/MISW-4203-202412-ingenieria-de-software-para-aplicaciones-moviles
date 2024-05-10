@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import com.tsdc.vinilos.R
+import com.tsdc.vinilos.view.utils.ActionItems
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,5 +52,6 @@ fun CollectorListToolBar() {
                 )
             }
         },
-        colors = TopAppBarDefaults.topAppBarColors(toolbarColor.value))
+        colors = TopAppBarDefaults.topAppBarColors(toolbarColor.value),
+        navigationIcon = { ActionItems() })
 }
