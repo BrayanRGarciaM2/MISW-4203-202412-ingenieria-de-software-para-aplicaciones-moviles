@@ -38,9 +38,9 @@ class ArtistDetailActivity : ComponentActivity() {
 
     companion object {
         private const val ARTIST_ID = "artist_id"
-        fun newIntent(context: Context, album: Artist?): Intent =
+        fun newIntent(context: Context, artist: Artist?): Intent =
             Intent(context, ArtistDetailActivity::class.java).apply {
-                putExtra(ARTIST_ID, album)
+                putExtra(ARTIST_ID, artist)
             }
     }
 }

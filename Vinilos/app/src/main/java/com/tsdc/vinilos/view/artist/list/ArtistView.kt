@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -154,14 +153,15 @@ class ArtistViewActivity : ComponentActivity() {
                 .fillMaxHeight()
                 .padding(paddingValues)
         ) {
-            items(artists) { artist ->
+            items(artists.size) { artistPosition ->
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .testTag("ArtistaListItem")
                         .clickable {
                             startActivity(
-                                ArtistDetailActivity.newIntent(context, artist)
+                                ArtistDetailActivity.newIntent(context, artists[artistPosition]),
+                                null
                             )
                         }
                 ) {
@@ -171,11 +171,11 @@ class ArtistViewActivity : ComponentActivity() {
                             .width(80.dp)
                             .height(80.dp)
                             .padding(10.dp),
-                        model = artist?.image,
+                        model = artists[artistPosition]?.image,
                         contentDescription = "Image"
                     )
                     Text(
-                        text = artist?.name.orEmpty(),
+                        text = artists[artistPosition]?.name.orEmpty(),
                         fontSize = 20.sp,
                         modifier = Modifier
                             .testTag("name")
