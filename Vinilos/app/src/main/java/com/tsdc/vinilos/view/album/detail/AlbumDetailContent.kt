@@ -89,7 +89,9 @@ fun AlbumDetailMainContent(album: Album?) {
         Image(
             painter = BitmapPainter(bitmap!!.asImageBitmap()),
             contentDescription = album?.description,
-            modifier = Modifier.size(200.dp).testTag("AlbumDetailImage")
+            modifier = Modifier
+                .size(200.dp)
+                .testTag("AlbumDetailImage")
 
         )
     }
@@ -101,7 +103,9 @@ fun AlbumDetailMainContent(album: Album?) {
             fontSize = 24.sp,
             color = Color.White
         ),
-        modifier = Modifier.padding(top = 16.dp).testTag("AlbumDetailTitle")
+        modifier = Modifier
+            .padding(top = 16.dp)
+            .testTag("AlbumTitle")
     )
     Text(
         text = album?.description.orEmpty(),
@@ -112,7 +116,9 @@ fun AlbumDetailMainContent(album: Album?) {
             color = Color.White
         ),
         textAlign = TextAlign.Center,
-        modifier = Modifier.padding(16.dp).testTag("AlbumDetailDescription")
+        modifier = Modifier
+            .padding(16.dp)
+            .testTag("AlbumDetailDescription")
     )
 }
 
@@ -156,7 +162,9 @@ fun AlbumDetailSongs(album: Album?) {
                         fontSize = 16.sp,
                         color = Color.White
                     ),
-                    modifier = Modifier.padding(16.dp).testTag("AlbumDetailSongTitle")
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .testTag("AlbumDetailSongTitle")
                 )
                 Text(
                     text = track.duration,

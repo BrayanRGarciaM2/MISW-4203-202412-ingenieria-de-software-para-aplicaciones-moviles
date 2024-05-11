@@ -5,6 +5,7 @@ import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onFirst
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -26,15 +27,15 @@ class ArtistActivityTest {
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Artistas").performClick()
-        val errorNode = activityRule.onNodeWithText("No se encontraron artistas para mostrar")
-        if(errorNode.isDisplayed()){
+        val errorNode = activityRule.onNodeWithTag("AlbumListError")
+        if (errorNode.isDisplayed()) {
             errorNode.assertIsDisplayed()
-        }else{
+        } else {
             Thread.sleep(2000)
-            val artist =  activityRule.onAllNodesWithTag("ArtistaListItem").onFirst()
+            val artist = activityRule.onAllNodesWithTag("ArtistaListItem").onFirst()
             artist.assertIsDisplayed()
-            val image =  activityRule.onAllNodesWithTag("imagen").onFirst()
-            image.assertExists()
+            Thread.sleep(2000)
+            activityRule.onAllNodesWithTag("imagen", true).onFirst().assertIsDisplayed()
         }
     }
 
@@ -43,14 +44,14 @@ class ArtistActivityTest {
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Artistas").performClick()
         val errorNode = activityRule.onNodeWithText("No se encontraron artistas para mostrar")
-        if(errorNode.isDisplayed()){
+        if (errorNode.isDisplayed()) {
             errorNode.assertIsDisplayed()
-        }else{
-            Thread.sleep(2000)
-            val artist =  activityRule.onAllNodesWithTag("ArtistaListItem").onFirst()
+        } else {
+            Thread.sleep(5000)
+            val artist = activityRule.onAllNodesWithTag("ArtistaListItem", true).onFirst()
             artist.assertIsDisplayed()
-            val name = activityRule.onAllNodesWithTag("name").onFirst()
-            name.assertExists()
+            Thread.sleep(2000)
+            activityRule.onAllNodesWithTag("artistName", true).onFirst().assertIsDisplayed()
         }
     }
 

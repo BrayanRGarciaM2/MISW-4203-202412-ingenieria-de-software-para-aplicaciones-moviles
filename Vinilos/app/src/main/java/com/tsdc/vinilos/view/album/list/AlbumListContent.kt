@@ -123,7 +123,9 @@ fun AlbumListItem(album: Album) {
         )
     ) {
         Text(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier
+                .padding(16.dp)
+                .testTag("AlbumItemTitle"),
             text = album.name,
             color = Color.White,
             style = TextStyle(

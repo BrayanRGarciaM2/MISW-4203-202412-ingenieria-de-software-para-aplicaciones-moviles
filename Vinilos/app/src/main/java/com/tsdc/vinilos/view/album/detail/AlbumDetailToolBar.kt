@@ -11,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -41,7 +43,8 @@ fun AlbumDetailBar(album: Album?) {
                         fontStyle = FontStyle.Italic,
                         fontSize = 16.sp,
                         color = Color.White
-                    )
+                    ),
+                    modifier = Modifier.testTag("AlbumDetailTitle")
                 )
                 Text(
                     text = "Álbum " + getYearFromDate(album?.releaseDate),
