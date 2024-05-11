@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -49,7 +50,8 @@ fun AlbumDetailBar(album: Album?) {
                         fontStyle = FontStyle.Italic,
                         fontSize = 16.sp,
                         color = Color.White
-                    )
+                    ),
+                    modifier = Modifier.testTag("AlbumDetailTitle")
                 )
                 Text(
                     text = "Álbum " + getYearFromDate(album?.releaseDate),
@@ -78,7 +80,10 @@ fun getYearFromDate(date: Date?): Int {
 fun ActionItems() {
     val activity = LocalContext.current as? ComponentActivity
     // IconButton se beneficia del RowScope para ser colocado dentro de un Row
-    IconButton(onClick = { activity?.finish() }) {
+    IconButton(
+        onClick = { activity?.finish() },
+        modifier = Modifier.testTag("BackButton")
+    ) {
         Icon(
             imageVector = Icons.Default.KeyboardArrowLeft,
             contentDescription = ContextCompat.getString(

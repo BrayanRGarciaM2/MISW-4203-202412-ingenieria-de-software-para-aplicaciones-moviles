@@ -178,7 +178,7 @@ class ArtistViewActivity : ComponentActivity() {
                         text = artists[artistPosition]?.name.orEmpty(),
                         fontSize = 20.sp,
                         modifier = Modifier
-                            .testTag("name")
+                            .testTag("artistName")
                             .height(80.dp)
                             .fillMaxWidth()
                             .wrapContentHeight(align = Alignment.CenterVertically)

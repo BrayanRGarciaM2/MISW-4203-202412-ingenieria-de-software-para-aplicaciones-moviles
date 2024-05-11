@@ -98,7 +98,7 @@ fun ArtistDetailMainContent(artist: Artist?) {
         ),
         modifier = Modifier
             .padding(top = 16.dp)
-            .testTag("ArtistDetailTitle")
+            .testTag("ArtistTitle")
     )
     Text(
         text = artist?.description.orEmpty(),
