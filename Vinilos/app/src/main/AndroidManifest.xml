@@ -51,12 +51,12 @@
             android:theme="@style/Theme.Vinilos" >
         </activity>
         <activity
-            android:name=".view.collector.CollectorMenuActivity"
+            android:name=".view.collector.login.CollectorMenuActivity"
             android:exported="false"
             android:label="@string/title_activity_collector_menu"
             android:theme="@style/Theme.Vinilos" />
         <activity
-            android:name=".view.collector.CollectorLogInActivity"
+            android:name=".view.collector.login.CollectorLogInActivity"
             android:exported="false"
             android:label="@string/title_activity_collector_log_in"
             android:theme="@style/Theme.Vinilos" />
@@ -69,6 +69,11 @@
             android:name=".view.artist.list.ArtistViewActivity"
             android:exported="false"
             android:label="@string/title_activity_artists"
+            android:theme="@style/Theme.Vinilos" />
+        <activity
+            android:name=".view.collector.list.CollectorListActivity"
+            android:exported="false"
+            android:label="@string/title_activity_collector_list"
             android:theme="@style/Theme.Vinilos" />
     </application>
 

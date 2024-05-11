@@ -2,18 +2,6 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="AlbumDetailActivity">
-        <State />
-      </entry>
-      <entry key="AlbumListActivity">
-        <State />
-      </entry>
-      <entry key="MainActivity">
-        <State />
-      </entry>
-      <entry key="MainActivityTest">
-        <State />
-      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -30,7 +18,16 @@
           <timeTargetWasSelectedWithDropDown value="2024-04-28T17:26:49.269380400Z" />
         </State>
       </entry>
-      <entry key="testAlbumDetailImage()">
+      <entry key="testScreenAlbumList()">
+        <State />
+      </entry>
+      <entry key="testScreenAlbumList() (1)">
+        <State />
+      </entry>
+      <entry key="testScreenCollector()">
+        <State />
+      </entry>
+      <entry key="testScreenCollectorList()">
         <State />
       </entry>
     </value>

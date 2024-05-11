@@ -38,8 +38,8 @@ class ArtistDetailActivityTest {
         activityRule.onNodeWithTag("ArtistDetailImage").assertIsDisplayed()
         activityRule.onNodeWithTag("ArtistTitle").assertIsDisplayed()
         activityRule.onNodeWithTag("ArtistDetailDescription").assertIsDisplayed()
-        activityRule.onNodeWithTag("BackButton").assertIsDisplayed()
-        activityRule.onNodeWithTag("BackButton").performClick()
+        activityRule.onNodeWithTag("BackButton", true).assertIsDisplayed()
+        activityRule.onNodeWithTag("BackButton", true).performClick()
 
     }
 

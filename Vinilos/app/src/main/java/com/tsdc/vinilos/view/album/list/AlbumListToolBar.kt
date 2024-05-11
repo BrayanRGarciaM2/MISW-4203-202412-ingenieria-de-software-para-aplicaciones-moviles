@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.getString
 import com.tsdc.vinilos.R
-import com.tsdc.vinilos.view.album.detail.ActionItems
+import com.tsdc.vinilos.view.utils.ActionItems
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

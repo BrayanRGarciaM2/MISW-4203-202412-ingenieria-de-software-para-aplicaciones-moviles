@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.view.album.detail
+package com.tsdc.vinilos.view.collector.list
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,24 +8,28 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tsdc.vinilos.data.model.Album
+import androidx.core.content.ContextCompat
+import com.tsdc.vinilos.R
 import com.tsdc.vinilos.view.utils.ActionItems
-import java.util.Calendar
-import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AlbumDetailBar(album: Album?) {
+fun CollectorListToolBar() {
+    val colorResource = colorResource(id = R.color.background_toolbar)
+    val toolbarColor = remember { mutableStateOf(colorResource) }
     TopAppBar(
         title = {
             Column(
@@ -36,7 +40,7 @@ fun AlbumDetailBar(album: Album?) {
             ) {
 
                 Text(
-                    text = album?.performers?.first()?.name.orEmpty(),
+                    text = ContextCompat.getString(LocalContext.current, R.string.collector_list_text),
                     color = Color.White,
                     style = TextStyle(
                         fontWeight = FontWeight.SemiBold,
@@ -44,27 +48,10 @@ fun AlbumDetailBar(album: Album?) {
                         fontSize = 16.sp,
                         color = Color.White
                     ),
-                    modifier = Modifier.testTag("AlbumDetailTitle")
-                )
-                Text(
-                    text = "Álbum " + getYearFromDate(album?.releaseDate),
-                    color = Color.White,
-                    style = TextStyle(
-                        fontWeight = FontWeight.Light,
-                        fontSize = 14.sp,
-                        letterSpacing = 0.15.sp,
-                        color = Color.White
-                    )
+                    modifier = Modifier.testTag("CollectorListTitle")
                 )
             }
         },
-        colors = TopAppBarDefaults.topAppBarColors(Color.Black),
-        navigationIcon = { ActionItems() }
-    )
-}
-
-fun getYearFromDate(date: Date?): Int {
-    val calendar = Calendar.getInstance()
-    calendar.time = date ?: Date()
-    return calendar.get(Calendar.YEAR)
+        colors = TopAppBarDefaults.topAppBarColors(toolbarColor.value),
+        navigationIcon = { ActionItems() })
 }

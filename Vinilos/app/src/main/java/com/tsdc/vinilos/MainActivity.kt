@@ -1,6 +1,5 @@
 package com.tsdc.vinilos
 
-//import androidx.constraintlayout.compose.ConstraintLayout
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -26,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.getString
 import com.tsdc.vinilos.ui.theme.VinilosTheme
-import com.tsdc.vinilos.view.collector.CollectorLogInActivity
+import com.tsdc.vinilos.view.collector.login.CollectorLogInActivity
 import com.tsdc.vinilos.view.guest.MenuActivity
 
 class MainActivity : ComponentActivity() {
