@@ -4,7 +4,11 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.tsdc.vinilos.data.model.Artist
+import com.tsdc.vinilos.data.model.PerformerPrize
 import com.tsdc.vinilos.data.model.Song
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class Converters {
     @TypeConverter
@@ -30,4 +34,17 @@ class Converters {
         val gson = Gson()
         return gson.toJson(list)
     }
+
+    @TypeConverter
+    fun fromPerformerPrizesList(list: List<PerformerPrize>): String {
+        val gson = Gson()
+        return gson.toJson(list)
+    }
+
+    @TypeConverter
+    fun fromPerformerPrizesList(value: String): List<PerformerPrize> {
+        val listType = object : TypeToken<List<PerformerPrize>>() {}.type
+        return Gson().fromJson(value, listType)
+    }
+
 }

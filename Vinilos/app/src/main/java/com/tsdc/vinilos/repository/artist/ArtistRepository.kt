@@ -1,7 +1,7 @@
 package com.tsdc.vinilos.repository.artist
 
-import com.tsdc.vinilos.data.model.Artist
+import com.tsdc.vinilos.data.model.ArtistList
 
 interface ArtistRepository {
-    suspend fun getArtists(): List<Artist>
+    suspend fun getArtists(): ArtistList
 }

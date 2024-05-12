@@ -5,10 +5,9 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.tsdc.vinilos.utils.toDate
 import kotlinx.parcelize.Parcelize
-import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
 
 @Parcelize
 data class Album(
@@ -53,11 +52,6 @@ fun List<AlbumEntity>.toAlbumList(): AlbumList {
         albums.add(it.toAlbum())
     }
     return AlbumList(albums)
-}
-
-fun String.toDate(): Date {
-    val format = SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH)
-    return format.parse(this) ?: Date()
 }
 
 fun AlbumEntity.toAlbum(): Album {

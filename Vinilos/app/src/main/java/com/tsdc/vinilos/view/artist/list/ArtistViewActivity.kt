@@ -43,7 +43,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.tsdc.vinilos.core.Output
-import com.tsdc.vinilos.data.model.Artist
+import com.tsdc.vinilos.data.local.artista.LocalArtistDataSource
+import com.tsdc.vinilos.data.local.database.VynilsDatabase
+import com.tsdc.vinilos.data.model.ArtistList
 import com.tsdc.vinilos.data.remote.artist.ArtistRemoteDataSource
 import com.tsdc.vinilos.presentation.artist.ArtistListViewModelFactory
 import com.tsdc.vinilos.presentation.artist.ArtistViewModel
@@ -57,7 +59,11 @@ class ArtistViewActivity : ComponentActivity() {
     private val viewModel by viewModels<ArtistViewModel> {
         ArtistListViewModelFactory(
             repo = ArtistRepositoryImpl(
-                artistRemoteDataSource = ArtistRemoteDataSource()
+                application,
+                ArtistRemoteDataSource(),
+                LocalArtistDataSource(
+                    VynilsDatabase.getDatabase(applicationContext).artistDao()
+                )
             )
         )
     }
@@ -73,7 +79,7 @@ class ArtistViewActivity : ComponentActivity() {
     @Composable
     fun InitArtistView(vm: ArtistViewModel) {
 
-        val artists = listOf<Artist?>()
+        val artists = ArtistList()
         val error = true
         var artistsToShow by remember {
             mutableStateOf(artists)
@@ -133,7 +139,7 @@ class ArtistViewActivity : ComponentActivity() {
                             }
                         }
 
-                        if (artistsToShow.isNotEmpty()) {
+                        if (artistsToShow.results.isNotEmpty()) {
                             ArtistListContent(paddingValues = it, artistsToShow)
                         } else {
                             ArtistListError(it)
@@ -146,21 +152,21 @@ class ArtistViewActivity : ComponentActivity() {
     }
 
     @Composable
-    fun ArtistListContent(paddingValues: PaddingValues, artists: List<Artist?>) {
+    fun ArtistListContent(paddingValues: PaddingValues, artists: ArtistList) {
         val context = LocalContext.current
         LazyColumn(
             modifier = Modifier
                 .fillMaxHeight()
                 .padding(paddingValues)
         ) {
-            items(artists.size) { artistPosition ->
+            items(artists.results.size) { artistPosition ->
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .testTag("ArtistaListItem")
                         .clickable {
                             startActivity(
-                                ArtistDetailActivity.newIntent(context, artists[artistPosition]),
+                                ArtistDetailActivity.newIntent(context, artists.results[artistPosition]),
                                 null
                             )
                         }
@@ -171,11 +177,11 @@ class ArtistViewActivity : ComponentActivity() {
                             .width(80.dp)
                             .height(80.dp)
                             .padding(10.dp),
-                        model = artists[artistPosition]?.image,
+                        model = artists.results[artistPosition].image,
                         contentDescription = "Image"
                     )
                     Text(
-                        text = artists[artistPosition]?.name.orEmpty(),
+                        text = artists.results[artistPosition].name,
                         fontSize = 20.sp,
                         modifier = Modifier
                             .testTag("artistName")

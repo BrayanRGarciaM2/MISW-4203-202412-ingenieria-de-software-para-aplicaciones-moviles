@@ -8,12 +8,12 @@ import com.tsdc.vinilos.repository.artist.ArtistRepository
 import kotlinx.coroutines.Dispatchers
 
 class ArtistViewModel(private val repo: ArtistRepository) : ViewModel() {
-    fun getArtistList() = liveData (Dispatchers.IO) {
+    fun getArtistList() = liveData(Dispatchers.IO) {
         emit(Output.Loading())
         try {
-            emit(Output.Success(repo.getArtists()))
+            emit(Output.Success(data = repo.getArtists()))
         } catch (e: Exception) {
-            emit(Output.Failure(e))
+            emit(Output.Failure(exception = e))
         }
     }
 }

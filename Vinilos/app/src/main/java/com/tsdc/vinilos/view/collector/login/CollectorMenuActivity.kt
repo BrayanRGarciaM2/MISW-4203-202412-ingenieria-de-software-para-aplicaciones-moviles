@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -45,7 +46,7 @@ class CollectorMenuActivity : ComponentActivity() {
 @Composable
 fun InitCollectorMenuActivity() {
     val localContext = LocalContext.current
-
+    val scrollState = rememberLazyListState()
     VinilosTheme {
         // A surface container using the 'background' color from the theme
         Surface(
@@ -68,7 +69,10 @@ fun InitCollectorMenuActivity() {
                         .fillMaxWidth()
                         .padding(top = 30.dp)
                 ) {
-                    LazyColumn {
+                    LazyColumn(
+                        state = scrollState
+                    ) {
+
                         item {
                             Button(
                                 modifier = Modifier

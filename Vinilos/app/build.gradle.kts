@@ -52,6 +52,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.room:room-common:2.6.1")
     val room_version = "2.6.1"
 
     implementation("io.coil-kt:coil-compose:2.6.0")
