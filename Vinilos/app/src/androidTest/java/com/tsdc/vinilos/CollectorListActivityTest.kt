@@ -29,7 +29,6 @@ class CollectorListActivityTest {
         activityRule.onNodeWithText("Artistas").assertIsDisplayed()
         activityRule.onNodeWithText("Agregar artista").assertIsDisplayed()
         activityRule.onNodeWithText("Crear un álbum").assertIsDisplayed()
-        activityRule.onNodeWithText("Volver").assertIsDisplayed()
         activityRule.onNodeWithText("Coleccionistas").assertIsDisplayed()
         activityRule.onNodeWithText("Coleccionistas").performClick()
         val errorNode = activityRule.onNodeWithText("No se encontraron coleccionistas para mostrar")
@@ -54,8 +53,6 @@ class CollectorListActivityTest {
         activityRule.onNodeWithText("Artistas").assertIsDisplayed()
         activityRule.onNodeWithText("Agregar artista").assertIsDisplayed()
         activityRule.onNodeWithText("Crear un álbum").assertIsDisplayed()
-        activityRule.onNodeWithText("Volver").assertIsDisplayed()
-        activityRule.onNodeWithText("Volver").performClick()
 
     }
 

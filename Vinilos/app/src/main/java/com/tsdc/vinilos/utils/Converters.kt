@@ -6,9 +6,6 @@ import com.google.gson.reflect.TypeToken
 import com.tsdc.vinilos.data.model.Artist
 import com.tsdc.vinilos.data.model.PerformerPrize
 import com.tsdc.vinilos.data.model.Song
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class Converters {
     @TypeConverter
