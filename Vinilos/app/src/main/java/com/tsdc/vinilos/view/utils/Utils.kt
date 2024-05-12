@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.tsdc.vinilos.R
@@ -18,7 +19,10 @@ import com.tsdc.vinilos.R
 fun ActionItems() {
     val activity = LocalContext.current as? ComponentActivity
     // IconButton se beneficia del RowScope para ser colocado dentro de un Row
-    IconButton(onClick = { activity?.finish() }) {
+    IconButton(
+        onClick = { activity?.finish() },
+        modifier = Modifier.testTag("BackButton")
+    ) {
         Icon(
             imageVector = Icons.Default.KeyboardArrowLeft,
             contentDescription = ContextCompat.getString(

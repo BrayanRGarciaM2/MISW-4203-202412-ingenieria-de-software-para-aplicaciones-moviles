@@ -32,6 +32,7 @@ import androidx.core.content.ContextCompat.startActivity
 import com.tsdc.vinilos.R
 import com.tsdc.vinilos.core.Output
 import com.tsdc.vinilos.data.model.Album
+import com.tsdc.vinilos.data.model.AlbumList
 import com.tsdc.vinilos.presentation.album.AlbumListViewModel
 import com.tsdc.vinilos.view.album.detail.AlbumDetailActivity
 import kotlinx.coroutines.launch
@@ -39,7 +40,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("MutableCollectionMutableState")
 @Composable
 fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel) {
-    val albums = listOf<Album?>()
+    val albums = AlbumList()
     var albumsToShow by remember {
         mutableStateOf(albums)
     }
@@ -57,7 +58,7 @@ fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel
 
                         is Output.Success -> {
                             // Show data
-                            albumsToShow = result.data.toMutableList()
+                            albumsToShow = result.data
                         }
 
                         is Output.Failure<*> -> {
@@ -82,9 +83,9 @@ fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel
             contentPadding = paddingValues,
             state = scrollState
         ) {
-            if (albumsToShow.size != 0) {
-                items(albumsToShow.size) { albumId ->
-                    albumsToShow[albumId]?.let { AlbumListItem(album = it) }
+            if (albumsToShow.results.isNotEmpty()) {
+                items(albumsToShow.results.size) { albumId ->
+                    AlbumListItem(album = albumsToShow.results[albumId])
                 }
             } else {
                 item {
