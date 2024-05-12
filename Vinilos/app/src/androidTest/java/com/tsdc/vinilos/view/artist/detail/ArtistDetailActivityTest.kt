@@ -40,7 +40,6 @@ class ArtistDetailActivityTest {
         activityRule.onNodeWithTag("ArtistDetailDescription").assertIsDisplayed()
         activityRule.onNodeWithTag("BackButton", true).assertIsDisplayed()
         activityRule.onNodeWithTag("BackButton", true).performClick()
-
     }
 
     fun initSteps() {

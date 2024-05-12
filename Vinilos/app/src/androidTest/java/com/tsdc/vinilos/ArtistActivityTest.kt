@@ -43,16 +43,12 @@ class ArtistActivityTest {
     fun testArtistListValidateNames() {
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Artistas").performClick()
-        val errorNode = activityRule.onNodeWithText("No se encontraron artistas para mostrar")
-        if (errorNode.isDisplayed()) {
-            errorNode.assertIsDisplayed()
-        } else {
-            Thread.sleep(5000)
-            val artist = activityRule.onAllNodesWithTag("ArtistaListItem", true).onFirst()
-            artist.assertIsDisplayed()
-            Thread.sleep(2000)
-            activityRule.onAllNodesWithTag("artistName", true).onFirst().assertIsDisplayed()
-        }
+
+        Thread.sleep(5000)
+        val artist = activityRule.onAllNodesWithTag("ArtistaListItem", true).onFirst()
+        artist.assertIsDisplayed()
+        Thread.sleep(2000)
+        activityRule.onAllNodesWithTag("artistName", true).onFirst().assertIsDisplayed()
     }
 
     @Test
@@ -60,9 +56,9 @@ class ArtistActivityTest {
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Artistas").performClick()
         val errorNode = activityRule.onNodeWithText("No se encontraron artistas para mostrar")
-        if(errorNode.isDisplayed()){
+        if (errorNode.isDisplayed()) {
             errorNode.assertIsDisplayed()
-        }else{
+        } else {
             activityRule.onNodeWithText("Artistas").assertExists()
         }
     }
