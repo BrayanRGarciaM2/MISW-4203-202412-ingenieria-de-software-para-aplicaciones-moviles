@@ -14,8 +14,8 @@ data class Artist(
     var name: String,
     val image: String,
     val description: String,
-    val birthDate: Date = Date(),
-    val createDate: Date = Date(),
+    val birthDate: Date? = Date(),
+    val createDate: Date? = Date(),
     val performerPrizes: List<PerformerPrize> = listOf()
 ) : Parcelable
 

@@ -11,6 +11,7 @@ class LocalArtistDataSource(private val artistDao: IArtistDao) {
 
     suspend fun saveArtists(artists: List<Artist>) {
         artists.forEach { artist ->
+
             artistDao.saveArtist(artist.toArtistEntity())
         }
     }
