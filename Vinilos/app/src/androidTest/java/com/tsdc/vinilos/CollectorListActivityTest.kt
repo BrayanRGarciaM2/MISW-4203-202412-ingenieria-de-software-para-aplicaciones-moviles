@@ -4,6 +4,8 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -57,6 +59,21 @@ class CollectorListActivityTest {
         activityRule.onNodeWithText("Volver").assertIsDisplayed()
         activityRule.onNodeWithText("Volver").performClick()
 
+    }
+
+    @Test
+    fun testScreenCollectorToVisitor() {
+        // Add a delay to give time for the view to load
+        activityRule.onNodeWithText("Visitante").performClick()
+        activityRule.onNodeWithText("Coleccionistas").assertIsDisplayed()
+        activityRule.onNodeWithText("Coleccionistas").performClick()
+        val errorNode = activityRule.onNodeWithTag("CollectorListError")
+        if (errorNode.isDisplayed()) {
+            errorNode.assertIsDisplayed()
+        } else {
+            Thread.sleep(2000)
+            activityRule.onAllNodesWithTag("CollectorItem").onFirst().assertIsDisplayed()
+        }
     }
 
 }
