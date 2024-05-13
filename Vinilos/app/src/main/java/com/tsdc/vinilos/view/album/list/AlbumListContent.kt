@@ -1,5 +1,6 @@
-package com.tsdc.vinilos.album.view.list
+package com.tsdc.vinilos.view.album.list
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -28,17 +29,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.getString
 import androidx.core.content.ContextCompat.startActivity
-import androidx.lifecycle.Observer
 import com.tsdc.vinilos.R
 import com.tsdc.vinilos.core.Output
 import com.tsdc.vinilos.data.model.Album
+import com.tsdc.vinilos.data.model.AlbumList
 import com.tsdc.vinilos.presentation.album.AlbumListViewModel
 import com.tsdc.vinilos.view.album.detail.AlbumDetailActivity
 import kotlinx.coroutines.launch
 
+@SuppressLint("MutableCollectionMutableState")
 @Composable
 fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel) {
-    val albums = mutableListOf<Album?>()
+    val albums = AlbumList()
     var albumsToShow by remember {
         mutableStateOf(albums)
     }
@@ -48,7 +50,7 @@ fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel
     Column(Modifier.fillMaxSize()) {
         LaunchedEffect(viewModel) {
             launch {
-                viewModel.getAlbums().observe(lifecycleOwner, Observer { result ->
+                viewModel.getAlbums().observe(lifecycleOwner) { result ->
                     when (result) {
                         is Output.Loading -> {
                             // Put a progress bar
@@ -56,7 +58,7 @@ fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel
 
                         is Output.Success -> {
                             // Show data
-                            albumsToShow = result.data.toMutableList()
+                            albumsToShow = result.data
                         }
 
                         is Output.Failure<*> -> {
@@ -64,7 +66,7 @@ fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel
 
                         }
                     }
-                })
+                }
             }
         }
         Text(
@@ -81,11 +83,11 @@ fun AlbumListContent(paddingValues: PaddingValues, viewModel: AlbumListViewModel
             contentPadding = paddingValues,
             state = scrollState
         ) {
-            if(albumsToShow.size != 0){
-                items(albumsToShow.size) { albumId ->
-                    albumsToShow[albumId]?.let { AlbumListItem(album = it) }
+            if (albumsToShow.results.isNotEmpty()) {
+                items(albumsToShow.results.size) { albumId ->
+                    AlbumListItem(album = albumsToShow.results[albumId])
                 }
-            }else{
+            } else {
                 item {
                     Text(
                         text = "No se encontraron álbumes para mostrar",
@@ -122,7 +124,9 @@ fun AlbumListItem(album: Album) {
         )
     ) {
         Text(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier
+                .padding(16.dp)
+                .testTag("AlbumItemTitle"),
             text = album.name,
             color = Color.White,
             style = TextStyle(

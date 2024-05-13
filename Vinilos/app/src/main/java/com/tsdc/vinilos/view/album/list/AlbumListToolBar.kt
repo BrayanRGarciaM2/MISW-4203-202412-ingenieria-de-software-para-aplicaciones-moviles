@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.album.view.list
+package com.tsdc.vinilos.view.album.list
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.getString
 import com.tsdc.vinilos.R
-import com.tsdc.vinilos.album.view.detail.ActionItems
+import com.tsdc.vinilos.view.utils.ActionItems
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

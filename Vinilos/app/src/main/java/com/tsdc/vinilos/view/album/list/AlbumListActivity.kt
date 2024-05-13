@@ -8,8 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.tsdc.vinilos.album.view.list.AlbumListScreen
-import com.tsdc.vinilos.data.remote.RemoteAlbumDataSource
+import com.tsdc.vinilos.data.local.album.LocalAlbumDataSource
+import com.tsdc.vinilos.data.local.database.VynilsDatabase
+import com.tsdc.vinilos.data.remote.album.RemoteAlbumDataSource
 import com.tsdc.vinilos.presentation.album.AlbumListViewModel
 import com.tsdc.vinilos.presentation.album.AlbumListViewModelFactory
 import com.tsdc.vinilos.repository.album.AlbumRepositoryImpl
@@ -17,10 +18,14 @@ import com.tsdc.vinilos.ui.theme.VinilosTheme
 
 class AlbumListActivity : ComponentActivity() {
 
-    val viewModel by viewModels<AlbumListViewModel> {
+    private val viewModel by viewModels<AlbumListViewModel> {
         AlbumListViewModelFactory(
             AlbumRepositoryImpl(
-                RemoteAlbumDataSource()
+                application,
+                RemoteAlbumDataSource(),
+                LocalAlbumDataSource(
+                    VynilsDatabase.getDatabase(applicationContext).albumDao()
+                )
             )
         )
     }

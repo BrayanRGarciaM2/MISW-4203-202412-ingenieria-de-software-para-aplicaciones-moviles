@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.view.collector
+package com.tsdc.vinilos.view.collector.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -29,7 +29,8 @@ import com.tsdc.vinilos.MainActivity
 import com.tsdc.vinilos.R
 import com.tsdc.vinilos.ui.theme.VinilosTheme
 import com.tsdc.vinilos.view.album.list.AlbumListActivity
-import com.tsdc.vinilos.view.artist.ArtistViewActivity
+import com.tsdc.vinilos.view.artist.list.ArtistViewActivity
+import com.tsdc.vinilos.view.collector.list.CollectorListActivity
 
 class CollectorMenuActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,7 +107,14 @@ fun InitCollectorMenuActivity() {
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(horizontal = 100.dp, vertical = 10.dp),
-                                onClick = { /*TODO*/ }
+                                onClick = {
+                                    localContext.startActivity(
+                                        Intent(
+                                            localContext,
+                                            CollectorListActivity::class.java
+                                        )
+                                    )
+                                }
                             ) {
                                 Text(text = "Coleccionistas", color = Color.White)
                             }
