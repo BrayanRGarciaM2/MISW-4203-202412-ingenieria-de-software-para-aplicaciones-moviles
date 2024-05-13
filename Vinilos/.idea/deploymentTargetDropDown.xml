@@ -2,32 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="app">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\ASUS\.android\avd\Pixel_3_API_27.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-28T17:26:49.269380400Z" />
-        </State>
-      </entry>
-      <entry key="testScreenAlbumList()">
-        <State />
-      </entry>
-      <entry key="testScreenAlbumList() (1)">
-        <State />
-      </entry>
-      <entry key="testScreenCollector()">
-        <State />
-      </entry>
-      <entry key="testScreenCollectorList()">
+      <entry key="All Tests">
         <State />
       </entry>
     </value>
