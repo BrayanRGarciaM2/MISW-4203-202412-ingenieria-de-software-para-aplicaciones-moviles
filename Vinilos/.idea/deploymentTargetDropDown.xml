@@ -5,6 +5,22 @@
       <entry key="All Tests">
         <State />
       </entry>
+      <entry key="app">
+        <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="SERIAL_NUMBER" />
+                  <value value="10AC9D23C6000SI" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-05-18T20:17:55.454388700Z" />
+        </State>
+      </entry>
     </value>
   </component>
 </project>

@@ -28,6 +28,7 @@ import androidx.core.content.ContextCompat
 import com.tsdc.vinilos.MainActivity
 import com.tsdc.vinilos.R
 import com.tsdc.vinilos.ui.theme.VinilosTheme
+import com.tsdc.vinilos.view.album.create.AlbumCreateActivity
 import com.tsdc.vinilos.view.album.list.AlbumListActivity
 import com.tsdc.vinilos.view.artist.list.ArtistViewActivity
 import com.tsdc.vinilos.view.collector.list.CollectorListActivity
@@ -135,7 +136,14 @@ fun InitCollectorMenuActivity() {
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(horizontal = 100.dp, vertical = 10.dp),
-                                onClick = { /*TODO*/ }
+                                onClick = {
+                                    localContext.startActivity(
+                                        Intent(
+                                            localContext,
+                                            AlbumCreateActivity::class.java
+                                        )
+                                    )
+                                }
                             ) {
                                 Text(text = "Crear un álbum", color = Color.White)
                             }
