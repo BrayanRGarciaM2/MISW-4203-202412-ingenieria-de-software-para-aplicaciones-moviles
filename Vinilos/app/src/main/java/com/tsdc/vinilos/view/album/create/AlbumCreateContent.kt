@@ -25,14 +25,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.input.OffsetMapping
-import androidx.compose.ui.text.input.TransformedText
-import androidx.compose.ui.text.input.VisualTransformation
 
 import com.tsdc.vinilos.view.collector.login.CollectorMenuActivity
-import java.time.LocalDate
-import kotlin.math.absoluteValue
 
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedBoxWithConstraintsScope")
@@ -108,21 +102,3 @@ fun AlbumCreateContent(paddingValues: PaddingValues, scrollState: ScrollState) {
         }
     }
 }
-
-object DateFormatter : MaskFormatter {
-    override fun format(textToFormat: String): String {
-        TODO("Format '01212022' into '01/21/2022'")
-    }
-}
-
-internal fun MaskFormatter.toVisualTransformation(): VisualTransformation =
-    VisualTransformation {
-        val output = format(it.text)
-        TransformedText(
-            AnnotatedString(output),
-            object : OffsetMapping {
-                override fun originalToTransformed(offset: Int): Int = output.length
-                override fun transformedToOriginal(offset: Int): Int = it.text.length
-            }
-        )
-    }
