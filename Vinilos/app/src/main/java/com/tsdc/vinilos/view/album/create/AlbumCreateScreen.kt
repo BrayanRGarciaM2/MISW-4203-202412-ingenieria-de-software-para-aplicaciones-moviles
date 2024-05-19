@@ -5,10 +5,11 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import com.tsdc.vinilos.presentation.album.AlbumCreateViewModel
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun AlbumCreateScreen() {
+fun AlbumCreateScreen(viewModel: AlbumCreateViewModel) {
     Scaffold(
         topBar = {
             AlbumCreateBar()
@@ -17,7 +18,8 @@ fun AlbumCreateScreen() {
         val scrollState = rememberScrollState()
         AlbumCreateContent(
             paddingValues = paddingValues,
-            scrollState = scrollState
+            scrollState = scrollState,
+            viewModel
         )
     }
 }

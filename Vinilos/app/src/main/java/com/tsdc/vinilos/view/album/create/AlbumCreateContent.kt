@@ -1,18 +1,15 @@
 package com.tsdc.vinilos.view.album.create
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ScrollState
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -25,56 +22,70 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.sp
-import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
-import com.maxkeppeler.sheets.calendar.CalendarDialog
-import com.maxkeppeler.sheets.calendar.models.CalendarConfig
-import com.maxkeppeler.sheets.calendar.models.CalendarSelection
-import com.maxkeppeler.sheets.calendar.models.CalendarStyle
+import com.google.gson.JsonObject
 import com.tsdc.vinilos.R
+import com.tsdc.vinilos.presentation.album.AlbumCreateViewModel
 import com.tsdc.vinilos.ui.theme.VinilosTheme
 
-import com.tsdc.vinilos.view.collector.login.CollectorMenuActivity
+import com.tsdc.vinilos.view.utils.CustomDatePicker
+import com.tsdc.vinilos.view.utils.hideKeyBoard
+import com.tsdc.vinilos.view.utils.isValidImageUrl
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+
+data class AlbumFormData(
+    val name: String,
+    val description: String,
+    val recordLabel: String,
+    val genre: String,
+    val cover: String,
+    val releaseDate: String)
+{
+    fun toJsonObject() = JsonObject().apply {
+        addProperty("name", name)
+        addProperty("description", description)
+        addProperty("recordLabel", recordLabel)
+        addProperty("genre", genre)
+        addProperty("cover", cover)
+        addProperty("releaseDate", releaseDate)
+    }
+
+}
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
-fun AlbumCreateContent(paddingValues: PaddingValues, scrollState: ScrollState) {
-    val localContext = LocalContext.current
-    var nombre by remember {
-        mutableStateOf("")
-    }
-    var descripción by remember {
-        mutableStateOf("")
-    }
-    var compañia by remember {
-        mutableStateOf("")
-    }
-    var género by remember {
-        mutableStateOf("")
-    }
-    var imagen by remember {
-        mutableStateOf("")
-    }
-    val date = remember { mutableStateOf(LocalDate.now())}
+fun AlbumCreateContent(paddingValues: PaddingValues, scrollState: ScrollState, viewModel: AlbumCreateViewModel) {
+    var name by remember { mutableStateOf("")}
+    var description by remember { mutableStateOf("")}
+    var recordLabel by remember { mutableStateOf("")}
+    var genre by remember { mutableStateOf("")}
+    var cover by remember { mutableStateOf("")}
 
-    var nombreError by remember { mutableStateOf(false) }
-    var descripciónError by remember { mutableStateOf(false) }
-    var géneroError by remember { mutableStateOf(false) }
-    var imagenError by remember { mutableStateOf(false) }
-    var compañiaError by remember { mutableStateOf(false) }
+    var nameError by remember { mutableStateOf(false) }
+    var descriptionError by remember { mutableStateOf(false) }
+    var genreError by remember { mutableStateOf(false) }
+    var coverError by remember { mutableStateOf(false) }
+    var recordLabelError by remember { mutableStateOf(false) }
+
+    val releaseDate = remember { mutableStateOf(LocalDate.now())}
+    val view = LocalView.current
 
     fun validateFields() {
-        nombreError = nombre.isBlank()
-        descripciónError = descripción.isBlank()
-        géneroError = género.isBlank()
-        imagenError = imagen.isBlank()
-        compañiaError = compañia.isBlank()
+        nameError = name.isBlank()
+        descriptionError = description.isBlank()
+        genreError = genre.isBlank()
+        coverError = cover.isBlank()
+        recordLabelError = recordLabel.isBlank()
     }
+
+    val formData = remember { mutableStateOf(AlbumFormData("", "", "", "","", "")) }
+
 
     Column(
         Modifier
@@ -92,64 +103,78 @@ fun AlbumCreateContent(paddingValues: PaddingValues, scrollState: ScrollState) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     OutlinedTextField(
-                        value = nombre,
+                        value = name,
                         onValueChange = {
-                            nombre = it
-                            nombreError = it.isBlank()
+                            name = it
+                            nameError = it.isBlank()
                         },
                         label = { Text(text = "Nombre", color = colorResource(id = R.color.label_text_color))},
                         modifier = Modifier.padding(top = 20.dp)
                     )
-                    if (nombreError) {
+                    if (nameError) {
                         Text(text = "Campo nombre es obligatorio", color = Color.Red, fontSize = 12.sp)
                     }
                     OutlinedTextField(
-                        value = descripción,
-                        onValueChange = {descripción = it},
+                        value = description,
+                        onValueChange = {description = it},
                         label = { Text(text = "Descripción", color = colorResource(id = R.color.label_text_color))},
                         modifier = Modifier.padding(top = 20.dp)
                     )
-                    if (descripciónError) {
+                    if (descriptionError) {
                         Text(text = "Campo descripción es obligatorio", color = Color.Red, fontSize = 12.sp)
                     }
                     OutlinedTextField(
-                        value = género,
-                        onValueChange = {género = it},
+                        value = genre,
+                        onValueChange = {genre = it},
                         label = { Text(text = "Género", color = colorResource(id = R.color.label_text_color)) },
                         modifier = Modifier.padding(top = 20.dp)
                     )
-                    if (géneroError) {
+                    if (genreError) {
                         Text(text = "Campo género es obligatorio", color = Color.Red, fontSize = 12.sp)
                     }
                     OutlinedTextField(
-                        value = imagen,
-                        onValueChange = {imagen = it},
+                        value = cover,
+                        onValueChange = {cover = it},
                         label = { Text(text = "Imagen", color = colorResource(id = R.color.label_text_color)) },
                         modifier = Modifier.padding(top = 20.dp)
                     )
-                    if (imagenError) {
+                    if (cover.isNotEmpty() && !isValidImageUrl(cover)) {
+                        Text(
+                            "La URL debe ser una imagen válida (extensiones permitidas: jpg, jpeg, png, gif)",
+                            modifier = Modifier.padding(top = 4.dp),
+                            color = androidx.compose.ui.graphics.Color.Red
+                        )
+                    }
+                    if (coverError) {
                         Text(text = "Campo imagen es obligatorio", color = Color.Red, fontSize = 12.sp)
                     }
                     OutlinedTextField(
-                        value = compañia,
-                        onValueChange = {compañia = it},
+                        value = recordLabel,
+                        onValueChange = {recordLabel = it},
                         label = { Text(text = "Compañia discografica", color = colorResource(id = R.color.label_text_color)) },
-                        modifier = Modifier.padding(top = 20.dp)
+                        modifier = Modifier
+                            .padding(top = 20.dp)
+                            .onFocusChanged { focusState ->
+                                if (!focusState.isFocused) {
+                                    hideKeyBoard(view)
+                                }
+                            }
                     )
-                    if (compañiaError) {
+                    if (recordLabelError) {
                         Text(text = "Campo Compañia es obligatorio", color = Color.Red, fontSize = 12.sp)
                     }
                     CustomDatePicker(
-                        value = date.value,
-                        onValueChange = {date.value = it}
+                        value = releaseDate.value,
+                        onValueChange = {releaseDate.value = it}
                     )
                     Button(
                         onClick = {
 
                             validateFields()
-
-                            if (!nombreError && !descripciónError && !géneroError && !imagenError && !compañiaError) {
-                                localContext.startActivity(Intent(localContext, CollectorMenuActivity::class.java))
+                            if (!nameError && !descriptionError && !genreError && !coverError && !recordLabelError) {
+                                formData.value = AlbumFormData(name, description, recordLabel , genre,cover, releaseDate.value.format(
+                                    DateTimeFormatter.ISO_DATE))
+                                sendData(formData.value, viewModel)
                             }
                         },
                         modifier = Modifier.padding(top = 20.dp)
@@ -163,40 +188,9 @@ fun AlbumCreateContent(paddingValues: PaddingValues, scrollState: ScrollState) {
 }
 
 
-@RequiresApi(Build.VERSION_CODES.O)
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun CustomDatePicker(
-    value: LocalDate,
-    onValueChange: (LocalDate) -> Unit
-) {
-
-    val open = remember { mutableStateOf(false)}
-
-    if (open.value) {
-        CalendarDialog(
-            state = rememberUseCaseState(visible = true, true, onCloseRequest = { open.value = false } ),
-            config = CalendarConfig(
-                yearSelection = true,
-                style = CalendarStyle.MONTH,
-            ),
-            selection = CalendarSelection.Date(
-                selectedDate = value
-            ) { newDate ->
-                onValueChange(newDate)
-            },
-        )
-    }
-
-    OutlinedTextField(
-        modifier = Modifier.clickable {
-            open.value = true
-        }.padding(top = 20.dp),
-        enabled = false,
-        label = { Text(text = "Fecha de lanzamiento") },
-        value = value.format(DateTimeFormatter.ISO_DATE),
-        onValueChange = {}
-    )
+fun sendData(formData: AlbumFormData, viewModel: AlbumCreateViewModel ) {
+    formData.toJsonObject()
+    viewModel.createAlbum(formData.toJsonObject())
 }
 
 

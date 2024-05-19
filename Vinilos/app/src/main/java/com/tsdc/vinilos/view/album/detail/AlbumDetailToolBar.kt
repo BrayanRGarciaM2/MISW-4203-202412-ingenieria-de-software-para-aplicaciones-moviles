@@ -36,7 +36,7 @@ fun AlbumDetailBar(album: Album?) {
             ) {
 
                 Text(
-                    text = album?.performers?.first()?.name.orEmpty(),
+                    text = album?.performers?.firstOrNull()?.name.orEmpty(),
                     color = Color.White,
                     style = TextStyle(
                         fontWeight = FontWeight.SemiBold,
