@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalView
@@ -34,6 +35,8 @@ import com.tsdc.vinilos.ui.theme.VinilosTheme
 import com.tsdc.vinilos.view.utils.CustomDatePicker
 import com.tsdc.vinilos.view.utils.hideKeyBoard
 import com.tsdc.vinilos.view.utils.isValidImageUrl
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -85,7 +88,7 @@ fun AlbumCreateContent(paddingValues: PaddingValues, scrollState: ScrollState, v
     }
 
     val formData = remember { mutableStateOf(AlbumFormData("", "", "", "","", "")) }
-
+    val coroutineScope = rememberCoroutineScope()
 
     Column(
         Modifier
@@ -169,12 +172,13 @@ fun AlbumCreateContent(paddingValues: PaddingValues, scrollState: ScrollState, v
                     )
                     Button(
                         onClick = {
-
                             validateFields()
                             if (!nameError && !descriptionError && !genreError && !coverError && !recordLabelError) {
                                 formData.value = AlbumFormData(name, description, recordLabel , genre,cover, releaseDate.value.format(
                                     DateTimeFormatter.ISO_DATE))
-                                sendData(formData.value, viewModel)
+                                coroutineScope.launch(Dispatchers.IO) {
+                                    sendData(formData.value, viewModel)
+                                }
                             }
                         },
                         modifier = Modifier.padding(top = 20.dp)
@@ -188,7 +192,7 @@ fun AlbumCreateContent(paddingValues: PaddingValues, scrollState: ScrollState, v
 }
 
 
-fun sendData(formData: AlbumFormData, viewModel: AlbumCreateViewModel ) {
+suspend fun sendData(formData: AlbumFormData, viewModel: AlbumCreateViewModel ) {
     formData.toJsonObject()
     viewModel.createAlbum(formData.toJsonObject())
 }

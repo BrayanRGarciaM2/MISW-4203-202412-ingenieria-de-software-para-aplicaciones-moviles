@@ -3,6 +3,7 @@ package com.tsdc.vinilos.view.album.detail
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
@@ -72,14 +73,22 @@ fun AlbumDetailContent(album: Album?, paddingValues: PaddingValues, scrollState:
 @Composable
 fun AlbumDetailMainContent(album: Album?) {
     var bitmap by remember { mutableStateOf(null as Bitmap?) }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
         launch {
             withContext(Dispatchers.IO) {
                 val url = album?.cover
-                url?.let {
-                    val stream = URL(url).openStream()
-                    bitmap = BitmapFactory.decodeStream(stream)
+                if (url.isNullOrEmpty() || !isValidUrl(url)) {
+                    errorMessage = "URL no válida"
+                    return@withContext
+                }
+            try {
+                val stream = URL(url).openStream()
+                bitmap = BitmapFactory.decodeStream(stream)
+                } catch (e: Exception) {
+                    errorMessage = "Error al cargar la imagen"
+                    e.message?.let { Log.e(errorMessage , it) }
                 }
             }
         }
@@ -120,6 +129,15 @@ fun AlbumDetailMainContent(album: Album?) {
             .padding(16.dp)
             .testTag("AlbumDetailDescription")
     )
+}
+
+fun isValidUrl(url: String): Boolean {
+    return try {
+        URL(url).toURI()
+        true
+    } catch (e: Exception) {
+        false
+    }
 }
 
 @Composable
