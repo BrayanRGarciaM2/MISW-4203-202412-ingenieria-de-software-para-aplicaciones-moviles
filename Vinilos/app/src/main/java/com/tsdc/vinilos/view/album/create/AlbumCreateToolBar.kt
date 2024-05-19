@@ -32,7 +32,7 @@ fun AlbumCreateBar() {
             ) {
 
                 Text(
-                    text = "hello",
+                    text = "Crear álbum",
                     color = Color.White,
                     style = TextStyle(
                         fontWeight = FontWeight.SemiBold,
