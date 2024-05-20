@@ -168,7 +168,7 @@ fun CollectorDetailPerformers(collector: Collector?) {
         }
         collector?.favoritePerformers?.forEach { track ->
             val formatter = SimpleDateFormat("dd/MM/yyyy")
-            val formattedDate = formatter.format(track?.birthDate)
+            val formattedDate = formatter.format(track.birthDate)
             Row(Modifier.fillMaxWidth()) {
                 AsyncImage(
                     modifier = Modifier
