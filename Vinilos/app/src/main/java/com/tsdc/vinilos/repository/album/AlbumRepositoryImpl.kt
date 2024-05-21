@@ -33,6 +33,7 @@ class AlbumRepositoryImpl(
     }
 
     override suspend fun createAlbum(album: JsonObject): Album {
+        datasourceLocal.createAlbum(album)
         return dataSourceRemote.createAlbum(album)
     }
 
