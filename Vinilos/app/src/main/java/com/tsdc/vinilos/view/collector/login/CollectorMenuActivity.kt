@@ -125,7 +125,14 @@ fun InitCollectorMenuActivity() {
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(horizontal = 100.dp, vertical = 10.dp),
-                                onClick = { /*TODO*/ }
+                                onClick = {
+                                    localContext.startActivity(
+                                        Intent(
+                                            localContext,
+                                            ArtistViewActivity::class.java
+                                        )
+                                    )
+                                }
                             ) {
                                 Text(text = "Agregar artista", color = Color.White)
                             }

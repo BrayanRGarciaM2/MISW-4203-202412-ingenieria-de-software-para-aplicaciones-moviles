@@ -18,4 +18,5 @@
     <string name="artist_text">Artista</string>
     <string name="title_activity_collector_list">CollectorListActivity</string>
     <string name="collector_list_text">Coleccionistas</string>
+    <string name="title_activity_favorite_artist">FavoriteArtistActivity</string>
 </resources>
