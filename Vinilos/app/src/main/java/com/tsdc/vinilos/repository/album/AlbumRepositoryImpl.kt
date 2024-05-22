@@ -31,6 +31,10 @@ class AlbumRepositoryImpl(
         return datasourceLocal.getAlbums()
     }
 
+    override suspend fun getAlbumById(albumId: Int): Album? {
+        return dataSourceRemote.getAlbumById(albumId)
+    }
+
     private suspend fun saveAlbums(albums: List<Album>) {
         datasourceLocal.saveAlbums(albums)
     }

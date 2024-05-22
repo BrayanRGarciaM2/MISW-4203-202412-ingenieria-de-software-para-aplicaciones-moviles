@@ -13,12 +13,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -26,12 +33,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.tsdc.vinilos.core.Output
+import com.tsdc.vinilos.data.model.Album
 import com.tsdc.vinilos.data.model.Collector
+import com.tsdc.vinilos.presentation.collector.detail.CollectorDetailViewModel
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 
 @SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
-fun CollectorDetailContent(collector: Collector?, paddingValues: PaddingValues, scrollState: ScrollState) {
+fun CollectorDetailContent(collector: Collector?, viewModel: CollectorDetailViewModel,
+                           paddingValues: PaddingValues, scrollState: ScrollState) {
     Column(
         Modifier
             .fillMaxSize()
@@ -46,8 +58,15 @@ fun CollectorDetailContent(collector: Collector?, paddingValues: PaddingValues, 
                         .padding(top = 16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    Divider(
+                        thickness = 2.dp
+                    )
                     CollectorDetailMainContent(collector)
-                    CollectorDetailAlbums(collector = collector)
+                    Divider(
+                        modifier = Modifier.padding(top = 16.dp),
+                        thickness = 2.dp
+                    )
+                    CollectorDetailAlbums(collector = collector, viewModel = viewModel)
                     CollectorDetailPerformers(collector = collector)
                 }
             }
@@ -68,7 +87,7 @@ fun CollectorDetailMainContent(collector: Collector?) {
         ),
         modifier = Modifier
             .padding(top = 16.dp)
-            .testTag("CollectorTitle")
+            .testTag("CollectorDetailTitle")
     )
     Text(
         text = "Correo: " + collector?.email.orEmpty(),
@@ -98,7 +117,9 @@ fun CollectorDetailMainContent(collector: Collector?) {
     )
 }
 @Composable
-fun CollectorDetailAlbums(collector: Collector?) {
+fun CollectorDetailAlbums(collector: Collector?, viewModel: CollectorDetailViewModel) {
+    var albumDetail by remember { mutableStateOf(null as Album?) }
+    val lifecycleOwner = LocalLifecycleOwner.current
     Column(Modifier.padding(top = 16.dp)) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Text(
@@ -110,39 +131,36 @@ fun CollectorDetailAlbums(collector: Collector?) {
                     color = Color.White
                 ),
                 modifier = Modifier
-                    .padding(16.dp, 5.dp)
+                    .padding(20.dp, 5.dp)
                     .padding(top = 16.dp)
                     .padding(start = 16.dp)
 
             )
         }
-        collector?.collectorAlbums?.forEach { track ->
+        collector?.collectorAlbums?.forEach { album ->
             Column(Modifier.fillMaxWidth()) {
-                Text(
-                    text = track.id.toString(),
-                    color = Color.White,
-                    style = TextStyle(
-                        fontWeight = FontWeight.Normal,
-                        fontSize = 24.sp,
-                        color = Color.White
-                    ),
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .testTag("CollectorDetailArtistTitle")
-                )
-                Text(
-                    text = "Precio: " + track.price.toString(),
-                    color = Color.White,
-                    style = TextStyle(
-                        fontWeight = FontWeight.Normal,
-                        fontSize = 18.sp,
-                        color = Color.White
-                    ),
-                    modifier = Modifier
-                        .padding(16.dp, 5.dp)
-                        .padding(end = 16.dp)
-                        .testTag("PerformersDetailBirthDate")
-                )
+                LaunchedEffect(viewModel) {
+                    launch {
+                        viewModel.getAlbumById(album.id).observe(lifecycleOwner) { result ->
+                            when (result) {
+                                is Output.Loading -> {
+                                    // Put a progress bar
+                                }
+
+                                is Output.Success -> {
+                                    // Show data
+                                    albumDetail = result.data
+                                }
+
+                                is Output.Failure<*> -> {
+                                    // Show error
+
+                                }
+                            }
+                        }
+                    }
+                }
+                AlbumDetailInformation(albumDetail, album.price)
             }
         }
     }
@@ -160,7 +178,7 @@ fun CollectorDetailPerformers(collector: Collector?) {
                     color = Color.White
                 ),
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(20.dp, 5.dp)
                     .padding(top = 16.dp)
                     .padding(start = 16.dp)
 
@@ -168,16 +186,17 @@ fun CollectorDetailPerformers(collector: Collector?) {
         }
         collector?.favoritePerformers?.forEach { track ->
             val formatter = SimpleDateFormat("dd/MM/yyyy")
-            val formattedDate = formatter.format(track.birthDate)
+            val date = track?.birthDate ?: track?.creationDate;
+            val formattedDate = formatter.format(date)
             Row(Modifier.fillMaxWidth()) {
                 AsyncImage(
                     modifier = Modifier
-                        .testTag("imagen")
+                        .testTag("CollectorFavoritePerformersImage")
                         .width(80.dp)
                         .height(80.dp)
                         .padding(10.dp),
                     model = track.image,
-                    contentDescription = "Image"
+                    contentDescription = "Imagen del artista favorito ${track?.name.orEmpty()}"
                 )
                 Column(Modifier.fillMaxWidth()) {
                     Text(
@@ -185,12 +204,12 @@ fun CollectorDetailPerformers(collector: Collector?) {
                         color = Color.White,
                         style = TextStyle(
                             fontWeight = FontWeight.Normal,
-                            fontSize = 18.sp,
+                            fontSize = 20.sp,
                             color = Color.White
                         ),
                         modifier = Modifier
                             .padding(16.dp, 5.dp)
-                            .testTag("CollectorDetailArtistTitle")
+                            .testTag("CollectorDetailFavoritePerformersName")
                     )
                     Text(
                         text = formattedDate,
@@ -203,10 +222,56 @@ fun CollectorDetailPerformers(collector: Collector?) {
                         modifier = Modifier
                             .padding(16.dp, 5.dp)
                             .padding(end = 16.dp)
-                            .testTag("PerformersDetailBirthDate")
+                            .testTag("CollectorDetailFavoritePerformersDate")
                     )
                 }
             }
         }
     }
 }
+
+@Composable
+fun AlbumDetailInformation(album : Album?, price : Int){
+    Row(Modifier.fillMaxWidth()) {
+        AsyncImage(
+            modifier = Modifier
+                .testTag("CollectorAlbumImage")
+                .width(80.dp)
+                .height(80.dp)
+                .padding(10.dp),
+            model = album?.cover,
+            contentDescription = "Imagen del álbum ${album?.name.orEmpty()}"
+        )
+        Column(Modifier.fillMaxWidth()) {
+            Text(
+                text = album?.name.orEmpty(),
+                color = Color.White,
+                style = TextStyle(
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 20.sp,
+                    color = Color.White
+                ),
+                modifier = Modifier
+                    .padding(16.dp, 5.dp)
+                    .testTag("CollectorDetailAlbumName")
+            )
+            Text(
+                text = "Precio: $price",
+                color = Color.White,
+                style = TextStyle(
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 18.sp,
+                    color = Color.White
+                ),
+                modifier = Modifier
+                    .padding(16.dp, 5.dp)
+                    .padding(end = 16.dp)
+                    .testTag("CollectorDetailAlbumPrice")
+            )
+        }
+    }
+}
+
+
+
+

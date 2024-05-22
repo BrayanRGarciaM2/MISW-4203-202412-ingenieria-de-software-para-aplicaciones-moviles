@@ -31,7 +31,6 @@ fun CollectorDetailBar(collector: Collector?) {
                     .padding(end = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
                 Text(
                     text = collector?.name.orEmpty(),
                     color = Color.White,
@@ -41,7 +40,7 @@ fun CollectorDetailBar(collector: Collector?) {
                         fontSize = 16.sp,
                         color = Color.White
                     ),
-                    modifier = Modifier.testTag("CollectorDetailTitle")
+                    modifier = Modifier.testTag("CollectorDetailToolBarName")
                 )
                 Text(
                     text = "Coleccionista",

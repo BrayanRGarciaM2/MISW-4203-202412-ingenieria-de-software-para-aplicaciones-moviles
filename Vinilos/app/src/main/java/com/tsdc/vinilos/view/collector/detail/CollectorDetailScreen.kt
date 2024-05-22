@@ -6,9 +6,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import com.tsdc.vinilos.data.model.Collector
+import com.tsdc.vinilos.presentation.collector.detail.CollectorDetailViewModel
 
 @Composable
-fun CollectorDetailScreen(collector: Collector?) {
+fun CollectorDetailScreen(collector: Collector? , viewModel: CollectorDetailViewModel) {
     Scaffold(
         modifier = Modifier.testTag("CollectorDetailScreen"),
         topBar = {
@@ -20,6 +21,7 @@ fun CollectorDetailScreen(collector: Collector?) {
         val scrollState = rememberScrollState()
         CollectorDetailContent(
             collector = collector,
+            viewModel = viewModel,
             paddingValues = paddingValues,
             scrollState = scrollState
         )

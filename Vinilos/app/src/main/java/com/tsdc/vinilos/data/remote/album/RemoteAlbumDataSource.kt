@@ -9,4 +9,8 @@ class RemoteAlbumDataSource {
     suspend fun getAlbums(): List<Album> {
         return remoteApiSource.getAlbums()
     }
+
+    suspend fun getAlbumById(albumId: Int): Album? {
+        return remoteApiSource.getAlbumById(albumId)
+    }
 }
