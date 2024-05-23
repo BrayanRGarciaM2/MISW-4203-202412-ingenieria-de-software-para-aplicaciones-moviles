@@ -13,13 +13,16 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\sebas\.android\avd\Pixel_4a_API_30.avd" />
+                  <value value="C:\Users\sebas\.android\avd\Pixel_4a_API_30_1.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-05-20T22:09:37.196027100Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-05-23T01:29:37.147132500Z" />
         </State>
+      </entry>
+      <entry key="testAlbumDetailImage()">
+        <State />
       </entry>
     </value>
   </component>

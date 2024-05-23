@@ -17,9 +17,7 @@ class LocalAlbumDataSource(private val albumDao: IAlbumDao) {
         }
     }
 
-    suspend fun createAlbum(album: JsonObject) {
-        var gson = Gson()
-        var album = gson.fromJson(album, AlbumEntity::class.java)
-        albumDao.createAlbum(album)
+    suspend fun createAlbum(album: Album) {
+        albumDao.createAlbum(album.toAlbumEntity())
     }
 }

@@ -44,7 +44,10 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.core.content.ContextCompat
+import com.tsdc.vinilos.data.model.RecordLabel
+import com.tsdc.vinilos.data.model.Recurrence
 import com.tsdc.vinilos.view.collector.login.CollectorMenuActivity
 
 data class AlbumFormData(
@@ -170,7 +173,7 @@ fun AlbumCreateContent(
                     )
                     if (cover.isNotEmpty() && !isValidImageUrl(cover)) {
                         Text(
-                            "La URL debe ser una imagen válida (extensiones permitidas: jpg, jpeg, png, gif)",
+                            "La URL debe empezar con https:// una imagen válida (extensiones permitidas: jpg, jpeg, png, gif)",
                             modifier = Modifier.padding(top = 4.dp),
                             color = androidx.compose.ui.graphics.Color.Red
                         )
@@ -257,6 +260,7 @@ fun RecurrenceDropdownMenu(recurrence: (String) -> Unit) {
             OutlinedTextField(
                 modifier = Modifier
                 .menuAnchor()
+                .testTag("recurrenceDropdownMenu")
                 .padding(top = 20.dp),
                 readOnly = true,
                 value = selectedOptionText,
@@ -269,6 +273,7 @@ fun RecurrenceDropdownMenu(recurrence: (String) -> Unit) {
             ) {
                 options.forEach { selectionOption ->
                     DropdownMenuItem(
+                        modifier = Modifier.testTag("recurrenceDropdownItem"),
                         text = { Text(selectionOption) },
                         onClick = {
                             selectedOptionText = selectionOption
@@ -296,6 +301,7 @@ fun RecordLabelDropdownMenu(recordLabelEnum: (String) -> Unit) {
             OutlinedTextField(
                 modifier = Modifier
                 .menuAnchor()
+                .testTag("recordLabelDropdownMenu")
                 .padding(top = 20.dp),
 
             readOnly = true,
@@ -309,6 +315,7 @@ fun RecordLabelDropdownMenu(recordLabelEnum: (String) -> Unit) {
             ) {
                 options.forEach { selectionOption ->
                     DropdownMenuItem(
+                        modifier = Modifier.testTag("recordLabelDropdownItem"),
                         text = { Text(selectionOption) },
                         onClick = {
                             selectedOptionText = selectionOption
@@ -325,21 +332,6 @@ fun RecordLabelDropdownMenu(recordLabelEnum: (String) -> Unit) {
 suspend fun sendData(formData: AlbumFormData, viewModel: AlbumCreateViewModel ) {
     formData.toJsonObject()
     viewModel.createAlbum(formData.toJsonObject())
-}
-
-enum class Recurrence {
-    Classical,
-    Salsa,
-    Rock,
-    Folk
-}
-
-enum class RecordLabel(val value: String) {
-    SonyMusic ("Sony Music"),
-    EMI("EMI"),
-    DiscosFuentes("Discos Fuentes"),
-    Elektra("Elektra"),
-    FaniaRecords("Fania Records")
 }
 
 fun getRecurrenceList(): List<Recurrence> {

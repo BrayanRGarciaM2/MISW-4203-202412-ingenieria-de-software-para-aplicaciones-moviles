@@ -55,7 +55,6 @@ dependencies {
     val room_version = "2.6.1"
 
     implementation("com.maxkeppeler.sheets-compose-dialogs:core:1.2.0")
-    implementation("com.google.code.gson")
     implementation("com.maxkeppeler.sheets-compose-dialogs:calendar:1.2.0")
     implementation("io.coil-kt:coil-compose:2.6.0")
     implementation("androidx.navigation:navigation-compose:2.7.7")

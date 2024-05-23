@@ -3,6 +3,7 @@ package com.tsdc.vinilos.repository.album
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
+import android.util.Log
 import com.google.gson.JsonObject
 import com.tsdc.vinilos.data.local.album.LocalAlbumDataSource
 import com.tsdc.vinilos.data.model.Album
@@ -32,9 +33,14 @@ class AlbumRepositoryImpl(
         return datasourceLocal.getAlbums()
     }
 
-    override suspend fun createAlbum(album: JsonObject): Album {
-        datasourceLocal.createAlbum(album)
-        return dataSourceRemote.createAlbum(album)
+    override suspend fun createAlbum(album: JsonObject){
+        try {
+            val albumSaved = dataSourceRemote.createAlbum(album)
+            datasourceLocal.createAlbum(albumSaved)
+            Log.e("SaveAlbum", "Album saved successfully in both remote and local databases.")
+        } catch (e: Exception) {
+            Log.e("SaveAlbumError", "Error saving album: ${e.message}")
+        }
     }
 
     private suspend fun saveAlbums(albums: List<Album>) {

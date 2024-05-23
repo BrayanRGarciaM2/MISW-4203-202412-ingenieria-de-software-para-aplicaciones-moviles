@@ -7,5 +7,5 @@ import com.tsdc.vinilos.data.model.AlbumList
 interface AlbumRepository {
     suspend fun getAlbums(): AlbumList
 
-    suspend fun createAlbum(album: JsonObject): Album
+    suspend fun createAlbum(album: JsonObject)
 }
