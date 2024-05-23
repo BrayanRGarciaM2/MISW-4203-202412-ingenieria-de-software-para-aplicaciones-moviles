@@ -235,7 +235,7 @@ fun AlbumDetailInformation(album : Album?, price : Int){
     Row(Modifier.fillMaxWidth()) {
         AsyncImage(
             modifier = Modifier
-                .testTag("CollectorAlbumImage")
+                .testTag("CollectorDetailAlbumImage")
                 .width(80.dp)
                 .height(80.dp)
                 .padding(10.dp),

@@ -97,7 +97,7 @@ fun CollectorListItem(collector: Collector) {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
-            .testTag("AlbumListItem")
+            .testTag("CollectorListItem")
             .clickable {
                 ContextCompat.startActivity(
                     context,
