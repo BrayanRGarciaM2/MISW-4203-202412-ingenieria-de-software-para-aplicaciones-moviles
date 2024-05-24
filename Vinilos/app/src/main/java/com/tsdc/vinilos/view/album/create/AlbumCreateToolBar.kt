@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.view.album.detail
+package com.tsdc.vinilos.view.album.create
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,21 +11,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tsdc.vinilos.data.model.Album
 import com.tsdc.vinilos.view.utils.ActionItems
-import java.util.Calendar
-import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AlbumDetailBar(album: Album?) {
+fun AlbumCreateBar() {
     TopAppBar(
         title = {
             Column(
@@ -36,7 +32,7 @@ fun AlbumDetailBar(album: Album?) {
             ) {
 
                 Text(
-                    text = album?.performers?.firstOrNull()?.name.orEmpty(),
+                    text = "Crear álbum",
                     color = Color.White,
                     style = TextStyle(
                         fontWeight = FontWeight.SemiBold,
@@ -46,16 +42,6 @@ fun AlbumDetailBar(album: Album?) {
                     ),
                     modifier = Modifier.testTag("AlbumDetailTitle")
                 )
-                Text(
-                    text = "Álbum " + getYearFromDate(album?.releaseDate),
-                    color = Color.White,
-                    style = TextStyle(
-                        fontWeight = FontWeight.Light,
-                        fontSize = 14.sp,
-                        letterSpacing = 0.15.sp,
-                        color = Color.White
-                    )
-                )
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(Color.Black),
@@ -63,8 +49,3 @@ fun AlbumDetailBar(album: Album?) {
     )
 }
 
-fun getYearFromDate(date: Date?): Int {
-    val calendar = Calendar.getInstance()
-    calendar.time = date ?: Date()
-    return calendar.get(Calendar.YEAR)
-}

@@ -2,4 +2,5 @@
 <resources>
     <color name="background">#000000</color>
     <color name="background_toolbar">#6750A4</color>
+    <color name="label_text_color">#C6C4C5</color>
 </resources>
