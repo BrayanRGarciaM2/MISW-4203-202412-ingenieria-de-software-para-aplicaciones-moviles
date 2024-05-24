@@ -60,7 +60,7 @@ fun InitMenuActivity() {
                         .height(300.dp)
                         .padding(top = 97.dp),
                     painter = painterResource(id = R.drawable.vinilos_icon),
-                    contentDescription = "Icono de Vinilos"
+                    contentDescription = "Vynils Icon"
                 )
                 Row(
                     horizontalArrangement = Arrangement.SpaceEvenly,

@@ -172,7 +172,7 @@ class ArtistViewActivity : ComponentActivity() {
                             .height(80.dp)
                             .padding(10.dp),
                         model = artists[artistPosition]?.image,
-                        contentDescription = "Image"
+                        contentDescription = "Artist ${artists[artistPosition]?.name.orEmpty()} Image"
                     )
                     Text(
                         text = artists[artistPosition]?.name.orEmpty(),
