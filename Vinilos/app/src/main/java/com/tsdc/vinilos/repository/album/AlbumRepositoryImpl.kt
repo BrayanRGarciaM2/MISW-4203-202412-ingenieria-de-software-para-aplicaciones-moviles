@@ -37,7 +37,7 @@ class AlbumRepositoryImpl(
         try {
             val albumSaved = dataSourceRemote.createAlbum(album)
             datasourceLocal.createAlbum(albumSaved)
-            Log.e("SaveAlbum", "Album saved successfully in both remote and local databases.")
+            Log.d("SaveAlbum", "Album saved successfully in both remote and local databases.")
         } catch (e: Exception) {
             Log.e("SaveAlbumError", "Error saving album: ${e.message}")
         }

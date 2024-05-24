@@ -15,7 +15,7 @@ class AlbumCreateViewModel(private val repo: AlbumRepository) : ViewModel() {
             try {
                 repo.createAlbum(album)
             } catch (e: Exception) {
-                e.message?.let { Log.e("Create Álbum", it) }
+                e.message?.let { Log.e("Create Album", it) }
             }
         }
     }

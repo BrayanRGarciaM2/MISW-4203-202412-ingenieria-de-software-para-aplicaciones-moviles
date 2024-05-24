@@ -330,7 +330,6 @@ fun RecordLabelDropdownMenu(recordLabelEnum: (String) -> Unit) {
 }
 
 suspend fun sendData(formData: AlbumFormData, viewModel: AlbumCreateViewModel ) {
-    formData.toJsonObject()
     viewModel.createAlbum(formData.toJsonObject())
 }
 

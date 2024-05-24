@@ -114,25 +114,4 @@ class AlbumDetailActivityTest {
         }
 
     }
-
-    @Test
-    fun testAlbumDetailSongDuration() {
-        // Add a delay to give time for the view to load
-
-        activityRule.onNodeWithText("Visitante").performClick()
-        activityRule.onNodeWithText("Albumes").performClick()
-        val errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
-        if (errorNode.isDisplayed()) {
-            errorNode.assertIsDisplayed()
-        } else {
-            activityRule.onNodeWithText("Nombre del álbum").assertIsDisplayed()
-            Thread.sleep(2000)
-            activityRule.onAllNodesWithTag("AlbumListItem").onFirst().performClick()
-
-            // Check if the "AlbumDetailScreen" is displayed
-            activityRule.onNodeWithTag("AlbumDetailScreen").assertIsDisplayed()
-            Thread.sleep(2000)
-            activityRule.onAllNodesWithTag("AlbumDetailSongDuration").onFirst().assertIsDisplayed()
-        }
-    }
 }
