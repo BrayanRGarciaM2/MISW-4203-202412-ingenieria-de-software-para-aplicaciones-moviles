@@ -14,4 +14,8 @@ class RemoteAlbumDataSource {
     suspend fun createAlbum(album: JsonObject): Album {
         return remoteApiSource.createAlbum(album)
     }
+
+    suspend fun getAlbumById(albumId: Int): Album? {
+        return remoteApiSource.getAlbumById(albumId)
+    }
 }

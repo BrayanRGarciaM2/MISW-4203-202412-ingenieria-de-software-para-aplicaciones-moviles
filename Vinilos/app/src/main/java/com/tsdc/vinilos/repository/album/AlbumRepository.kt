@@ -8,4 +8,6 @@ interface AlbumRepository {
     suspend fun getAlbums(): AlbumList
 
     suspend fun createAlbum(album: JsonObject)
+
+    suspend fun getAlbumById(albumId: Int): Album?
 }

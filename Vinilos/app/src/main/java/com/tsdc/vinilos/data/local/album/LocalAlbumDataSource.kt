@@ -9,6 +9,7 @@ import com.tsdc.vinilos.data.model.toAlbumEntity
 import com.tsdc.vinilos.data.model.toAlbumList
 
 class LocalAlbumDataSource(private val albumDao: IAlbumDao) {
+
     suspend fun getAlbums(): AlbumList = albumDao.getAllAlbums().toAlbumList()
 
     suspend fun saveAlbums(albums: List<Album>) {

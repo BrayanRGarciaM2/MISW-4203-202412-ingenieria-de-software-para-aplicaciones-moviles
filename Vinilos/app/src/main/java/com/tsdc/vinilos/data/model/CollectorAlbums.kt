@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class CollectorAlbums(
+data class  CollectorAlbums(
     val id: Int,
     val price: Int,
     val status: String,

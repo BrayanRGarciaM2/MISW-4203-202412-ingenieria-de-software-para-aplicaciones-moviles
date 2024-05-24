@@ -1,4 +1,4 @@
-package com.tsdc.vinilos.view.album.detail
+package com.tsdc.vinilos.view.collector.detail
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,14 +17,12 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tsdc.vinilos.data.model.Album
 import com.tsdc.vinilos.view.utils.ActionItems
-import java.util.Calendar
-import java.util.Date
+import com.tsdc.vinilos.data.model.Collector
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AlbumDetailBar(album: Album?) {
+fun CollectorDetailBar(collector: Collector?) {
     TopAppBar(
         title = {
             Column(
@@ -33,9 +31,8 @@ fun AlbumDetailBar(album: Album?) {
                     .padding(end = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
                 Text(
-                    text = album?.performers?.firstOrNull()?.name.orEmpty(),
+                    text = collector?.name.orEmpty(),
                     color = Color.White,
                     style = TextStyle(
                         fontWeight = FontWeight.SemiBold,
@@ -43,10 +40,10 @@ fun AlbumDetailBar(album: Album?) {
                         fontSize = 16.sp,
                         color = Color.White
                     ),
-                    modifier = Modifier.testTag("AlbumDetailTitle")
+                    modifier = Modifier.testTag("CollectorDetailToolBarName")
                 )
                 Text(
-                    text = "Álbum " + getYearFromDate(album?.releaseDate),
+                    text = "Coleccionista",
                     color = Color.White,
                     style = TextStyle(
                         fontWeight = FontWeight.Light,
@@ -60,10 +57,4 @@ fun AlbumDetailBar(album: Album?) {
         colors = TopAppBarDefaults.topAppBarColors(Color.Black),
         navigationIcon = { ActionItems() }
     )
-}
-
-fun getYearFromDate(date: Date?): Int {
-    val calendar = Calendar.getInstance()
-    calendar.time = date ?: Date()
-    return calendar.get(Calendar.YEAR)
 }
