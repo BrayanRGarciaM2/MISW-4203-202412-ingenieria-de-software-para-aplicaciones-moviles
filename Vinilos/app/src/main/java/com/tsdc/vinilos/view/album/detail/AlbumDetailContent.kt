@@ -88,7 +88,7 @@ fun AlbumDetailMainContent(album: Album?) {
     if (bitmap != null) {
         Image(
             painter = BitmapPainter(bitmap!!.asImageBitmap()),
-            contentDescription = album?.description,
+            contentDescription = "Image of the album",
             modifier = Modifier
                 .size(200.dp)
                 .testTag("AlbumDetailImage")

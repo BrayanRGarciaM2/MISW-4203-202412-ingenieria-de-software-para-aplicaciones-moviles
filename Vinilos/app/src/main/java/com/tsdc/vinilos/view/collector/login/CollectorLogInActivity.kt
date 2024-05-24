@@ -63,27 +63,35 @@ fun InitLoginActivity() {
                             .height(300.dp)
                             .padding(top = 97.dp),
                         painter = painterResource(id = R.drawable.vinilos_icon),
-                        contentDescription = "Icono de Vinilos")
+                        contentDescription = "Vynils Icon"
+                    )
                 }
                 item {
-                    Row (
+                    Row(
                         horizontalArrangement = Arrangement.Center,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 50.dp)
-                    ){
-                        Column (
+                    ) {
+                        Column(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             TextField(
                                 value = collectorUser,
-                                onValueChange = {collectorUser = it},
-                                label = { Text(text = "Digíte su correo")}
+                                onValueChange = { collectorUser = it },
+                                label = { Text(text = "Digíte su correo") }
                             )
                             Button(
-                                onClick = { localContext.startActivity(Intent(localContext, CollectorMenuActivity::class.java)) },
+                                onClick = {
+                                    localContext.startActivity(
+                                        Intent(
+                                            localContext,
+                                            CollectorMenuActivity::class.java
+                                        )
+                                    )
+                                },
                                 modifier = Modifier.padding(top = 20.dp)
-                            ){
+                            ) {
                                 Text(text = "Identificarse")
                             }
                         }
