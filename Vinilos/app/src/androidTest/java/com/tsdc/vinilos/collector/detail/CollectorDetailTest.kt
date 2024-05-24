@@ -30,7 +30,6 @@ class CollectorDetailTest {
         activityRule.onAllNodesWithTag("CollectorListItem").onFirst().performClick()
         Thread.sleep(4000)
         activityRule.onNodeWithTag("CollectorDetailToolBarName").assertIsDisplayed()
-        Thread.sleep(4000)
     }
     @Test
     fun testCollectorDetailEmailAndTelephone() {
@@ -42,7 +41,6 @@ class CollectorDetailTest {
         activityRule.onNodeWithTag("CollectorDetailEmail").assertIsDisplayed()
         Thread.sleep(4000)
         activityRule.onNodeWithTag("CollectorDetailTelephone").assertIsDisplayed()
-        Thread.sleep(4000)
     }
 
     @Test
@@ -55,7 +53,6 @@ class CollectorDetailTest {
         activityRule.onNodeWithTag("CollectorDetailAlbumName").assertIsDisplayed()
         Thread.sleep(4000)
         activityRule.onNodeWithTag("CollectorDetailFavoritePerformersName").assertIsDisplayed()
-        Thread.sleep(4000)
     }
 
     @Test
@@ -76,7 +73,6 @@ class CollectorDetailTest {
     activityRule.onAllNodesWithTag("CollectorListItem").onFirst().performClick()
     Thread.sleep(4000)
     activityRule.onNodeWithTag("CollectorDetailAlbumImage").assertIsDisplayed()
-    Thread.sleep(4000)
     }
 
     @Test
@@ -87,6 +83,5 @@ class CollectorDetailTest {
     activityRule.onAllNodesWithTag("CollectorListItem").onFirst().performClick()
     Thread.sleep(4000)
     activityRule.onNodeWithTag("CollectorFavoritePerformersImage").assertIsDisplayed()
-    Thread.sleep(4000)
     }
 }
