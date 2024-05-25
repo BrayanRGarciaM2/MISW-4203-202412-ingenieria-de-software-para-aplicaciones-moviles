@@ -1,4 +1,4 @@
-package com.tsdc.vinilos
+package com.tsdc.vinilos.view.album.detail
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.isDisplayed
@@ -10,6 +10,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import com.tsdc.vinilos.MainActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -43,10 +44,10 @@ class AlbumDetailActivityTest {
 
     @Test
     fun testAlbumDetailTitle() {
-        // Add a delay to give time for the view to load
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Albumes").performClick()
+        Thread.sleep(2000)
         val errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
         if (errorNode.isDisplayed()) {
             errorNode.assertIsDisplayed()
@@ -109,9 +110,34 @@ class AlbumDetailActivityTest {
         }
         // Check if the "AlbumDetailScreen" is displayed
         Thread.sleep(3000)
-        if ( activityRule.onAllNodesWithTag("AlbumDetailSongTitle").onFirst().isDisplayed()) {
+        if (activityRule.onAllNodesWithTag("AlbumDetailSongTitle").onFirst().isDisplayed()) {
             activityRule.onAllNodesWithTag("AlbumDetailSongTitle").onFirst().assertIsDisplayed()
         }
+    }
 
+    @Test
+    fun testAlbumDetailSongDuration() {
+        // Add a delay to give time for the view to load
+
+        activityRule.onNodeWithText("Visitante").performClick()
+        activityRule.onNodeWithText("Albumes").performClick()
+        Thread.sleep(2000)
+        val errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
+        if (errorNode.isDisplayed()) {
+            errorNode.assertIsDisplayed()
+        } else {
+            activityRule.onNodeWithText("Nombre del álbum").assertIsDisplayed()
+            Thread.sleep(2000)
+            activityRule.onAllNodesWithTag("AlbumListItem").onFirst().performClick()
+
+            // Check if the "AlbumDetailScreen" is displayed
+            activityRule.onNodeWithTag("AlbumDetailScreen").assertIsDisplayed()
+            Thread.sleep(2000)
+            if (activityRule.onAllNodesWithTag("AlbumDetailSongDuration").onFirst().isDisplayed()) {
+                activityRule.onAllNodesWithTag("AlbumDetailSongDuration").onFirst()
+                    .assertIsDisplayed()
+            }
+        }
     }
 }
+

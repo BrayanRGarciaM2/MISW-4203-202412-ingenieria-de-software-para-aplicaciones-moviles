@@ -13,9 +13,13 @@
     <string name="duration_text">Duración</string>
     <string name="title_activity_album_list">AlbumListActivity</string>
     <string name="album_catalog_text">Catálogo de Álbumes</string>
+    <string name="add_performer_text">Agregar artista</string>
+    <string name="asociate_performer_text">Asociar artista</string>
     <string name="album_name_text">Nombre del álbum</string>
     <string name="title_activity_artist_detail">ArtistDetailActivity</string>
     <string name="artist_text">Artista</string>
     <string name="title_activity_collector_list">CollectorListActivity</string>
     <string name="collector_list_text">Coleccionistas</string>
+    <string name="title_activity_favorite_artist">FavoriteArtistActivity</string>
+    <string name="title_activity_favorite_performer">FavoritePerformerActivity</string>
 </resources>

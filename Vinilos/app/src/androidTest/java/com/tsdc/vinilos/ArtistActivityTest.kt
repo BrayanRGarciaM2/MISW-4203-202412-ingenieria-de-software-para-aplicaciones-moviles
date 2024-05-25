@@ -24,7 +24,7 @@ class ArtistActivityTest {
 
     @Test
     fun testArtistsListValidateImages() {
-
+        Thread.sleep(1000)
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Artistas").performClick()
         val errorNode = activityRule.onNodeWithTag("AlbumListError")
@@ -41,6 +41,7 @@ class ArtistActivityTest {
 
     @Test
     fun testArtistListValidateNames() {
+        Thread.sleep(1000)
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Artistas").performClick()
         val errorNode = activityRule.onNodeWithText("No se encontraron artistas para mostrar")
