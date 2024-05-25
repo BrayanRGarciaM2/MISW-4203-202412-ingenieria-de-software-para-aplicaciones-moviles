@@ -74,6 +74,7 @@ class CollectorListActivityTest {
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Coleccionistas").assertIsDisplayed()
         activityRule.onNodeWithText("Coleccionistas").performClick()
+        Thread.sleep(1000)
         val errorNode = activityRule.onNodeWithTag("CollectorListError")
         if (errorNode.isDisplayed()) {
             errorNode.assertIsDisplayed()
