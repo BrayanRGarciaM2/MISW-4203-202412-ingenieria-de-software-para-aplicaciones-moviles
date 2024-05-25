@@ -20,9 +20,9 @@
         tools:ignore="HardcodedDebugMode"
         tools:targetApi="31">
         <activity
-            android:name=".view.collector.favorite.FavoriteArtistActivity"
+            android:name=".view.performer.favorite.FavoritePerformerActivity"
             android:exported="false"
-            android:label="@string/title_activity_favorite_artist"
+            android:label="@string/title_activity_favorite_performer"
             android:theme="@style/Theme.Vinilos" />
         <activity
             android:name=".view.artist.detail.ArtistDetailActivity"
@@ -54,7 +54,7 @@
             android:name=".view.album.detail.AlbumDetailActivity"
             android:exported="true"
             android:label="@string/title_activity_album_detail"
-            android:theme="@style/Theme.Vinilos"></activity>
+            android:theme="@style/Theme.Vinilos" />
         <activity
             android:name=".view.collector.login.CollectorMenuActivity"
             android:exported="false"

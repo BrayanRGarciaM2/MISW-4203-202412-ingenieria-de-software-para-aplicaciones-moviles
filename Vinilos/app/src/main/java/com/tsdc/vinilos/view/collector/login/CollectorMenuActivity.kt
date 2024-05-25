@@ -31,6 +31,7 @@ import com.tsdc.vinilos.ui.theme.VinilosTheme
 import com.tsdc.vinilos.view.album.list.AlbumListActivity
 import com.tsdc.vinilos.view.artist.list.ArtistViewActivity
 import com.tsdc.vinilos.view.collector.list.CollectorListActivity
+import com.tsdc.vinilos.view.performer.favorite.FavoritePerformerActivity
 
 class CollectorMenuActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -129,7 +130,7 @@ fun InitCollectorMenuActivity() {
                                     localContext.startActivity(
                                         Intent(
                                             localContext,
-                                            ArtistViewActivity::class.java
+                                            FavoritePerformerActivity::class.java
                                         )
                                     )
                                 }

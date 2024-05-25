@@ -1,6 +1,5 @@
 package com.tsdc.vinilos.view.collector.login
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -16,7 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -37,14 +35,9 @@ import androidx.compose.ui.unit.dp
 import com.tsdc.vinilos.R
 import com.tsdc.vinilos.core.Output
 import com.tsdc.vinilos.data.local.login.LocalLoginDataSource
-import com.tsdc.vinilos.data.model.Collector
-import com.tsdc.vinilos.data.remote.collector.RemoteCollectorDataSource
 import com.tsdc.vinilos.data.remote.login.RemoteLoginDataSource
-import com.tsdc.vinilos.presentation.collector.CollectorListViewModelFactory
 import com.tsdc.vinilos.presentation.collector.login.CollectorLoginViewModel
 import com.tsdc.vinilos.presentation.collector.login.CollectorLoginViewModelFactory
-import com.tsdc.vinilos.repository.collector.CollectorRepositoryImpl
-import com.tsdc.vinilos.repository.login.LoginRepository
 import com.tsdc.vinilos.repository.login.LoginRepositoryImpl
 import com.tsdc.vinilos.ui.theme.VinilosTheme
 
@@ -67,31 +60,6 @@ class CollectorLogInActivity : ComponentActivity() {
         }
     }
 
-    @Composable
-    fun MyDialog() {
-        var showDialog by remember { mutableStateOf(false) }
-
-        AlertDialog(
-            onDismissRequest = { showDialog = false },
-            title = {
-                Text("Error")
-            },
-            text = {
-                Text("Prueba")
-            },
-            confirmButton = {
-                Button(onClick = { showDialog = false }) {
-                    Text("Aceptar")
-                }
-            },
-            dismissButton = {
-                Button(onClick = { showDialog = false }) {
-                    Text("Cancelar")
-                }
-            }
-        )
-    }
-
     fun String.isEmailValid(): Boolean {
         val emailRegex = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
         return emailRegex.toRegex().matches(this)
@@ -109,9 +77,6 @@ class CollectorLogInActivity : ComponentActivity() {
             mutableStateOf(false)
         }
 
-        var isCorrectEmail by remember {
-            mutableStateOf(false)
-        }
         VinilosTheme {
             // A surface container using the 'background' color from the theme
             Surface(
@@ -170,25 +135,28 @@ class CollectorLogInActivity : ComponentActivity() {
                                         isError = false
 
                                         if (collectorUser.isEmailValid() && collectorUser != "") {
-                                            viewModel.checkEmail(collectorUser).observe(lifecycleOwner) { result ->
-                                                when (result) {
-                                                    is Output.Loading -> {}
-                                                    is Output.Failure<*> -> {}
-                                                    is Output.Success -> {
-                                                        isCorrectEmail = result.data
-                                                        if(isCorrectEmail) {
-                                                            localContext.startActivity(
-                                                                Intent(
-                                                                    localContext,
-                                                                    CollectorMenuActivity::class.java
+                                            viewModel.checkEmail(collectorUser)
+                                                .observe(lifecycleOwner) { result ->
+                                                    when (result) {
+                                                        is Output.Loading -> {}
+                                                        is Output.Failure<*> -> {}
+                                                        is Output.Success -> {
+                                                            result.data?.let {
+                                                                viewModel.saveCollectorId(result.data.id)
+                                                                localContext.startActivity(
+                                                                    Intent(
+                                                                        localContext,
+                                                                        CollectorMenuActivity::class.java
+                                                                    )
                                                                 )
-                                                            )
-                                                        }else{
-                                                            Toast.makeText(localContext, "Este correo no ha sigo registrado", Toast.LENGTH_LONG).show()
+                                                            } ?: Toast.makeText(
+                                                                localContext,
+                                                                "Correo no encontrado",
+                                                                Toast.LENGTH_LONG
+                                                            ).show()
                                                         }
                                                     }
                                                 }
-                                            }
 
 
                                         } else {

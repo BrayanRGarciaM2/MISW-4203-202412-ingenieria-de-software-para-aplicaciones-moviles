@@ -13,15 +13,12 @@ class CollectorLoginViewModel(private val repo: LoginRepository): ViewModel() {
         repo.saveCollectorId(id)
     }
 
-    fun getCollectorId():Int{
-        return repo.getCollectorId()
-    }
-
     fun checkEmail(email:String) = liveData (Dispatchers.IO) {
         emit(Output.Loading())
         try {
-            val collectors:List<Collector> = repo.getCollectors()
-            emit(Output.Success(collectors.any{ it.email == email}))
+            val collectors: List<Collector> = repo.getCollectors()
+            val collector = collectors.find { it.email == email }
+            emit(Output.Success(collector))
         } catch (e: Exception) {
             emit(Output.Failure(e))
         }
