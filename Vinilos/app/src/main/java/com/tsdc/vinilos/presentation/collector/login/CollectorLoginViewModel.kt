@@ -23,11 +23,9 @@ class CollectorLoginViewModel(private val repo: LoginRepository): ViewModel() {
             emit(Output.Failure(e))
         }
     }
-
 }
 
 class CollectorLoginViewModelFactory(private val repo: LoginRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
         modelClass.getConstructor(LoginRepository::class.java).newInstance(repo)
-
 }

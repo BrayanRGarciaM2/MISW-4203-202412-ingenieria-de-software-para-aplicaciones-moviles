@@ -1,19 +1,25 @@
 package com.tsdc.vinilos.view.performer.favorite.ui
 
 import androidx.activity.ComponentActivity
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -35,6 +41,7 @@ import com.tsdc.vinilos.R
 import com.tsdc.vinilos.core.Output
 import com.tsdc.vinilos.data.model.Artist
 import com.tsdc.vinilos.presentation.performer.FavoritePerformerViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
@@ -73,8 +80,24 @@ fun FavoritePerformersListContent(
     paddingValues: PaddingValues, artists: List<Artist?>,
     viewModel: FavoritePerformerViewModel
 ) {
+    if (artists.isEmpty()) {
+        ShowNotFoundArtistError()
+    } else {
+        ShowArtistList(paddingValues, artists, viewModel)
+    }
+}
+
+private const val DELAY_TIME = 2000L
+
+@Composable
+fun ShowArtistList(
+    paddingValues: PaddingValues,
+    artists: List<Artist?>,
+    viewModel: FavoritePerformerViewModel
+) {
     val context = LocalContext.current
     val checkedStates = remember { mutableStateListOf<Artist?>() }
+    var showSuccess by remember { mutableStateOf(false) }
     Column(modifier = Modifier.fillMaxHeight()) {
         LazyColumn(
             modifier = Modifier
@@ -88,6 +111,7 @@ fun FavoritePerformersListContent(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Checkbox(
+                        modifier = Modifier.testTag("CheckboxFavoritePerformerItem"),
                         checked = checkedStates.contains(artist),
                         onCheckedChange = { isChecked ->
                             if (isChecked) {
@@ -114,16 +138,45 @@ fun FavoritePerformersListContent(
         }
         val activity = LocalContext.current as? ComponentActivity
         Button(
-            modifier = Modifier.align(Alignment.CenterHorizontally),
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally),
             onClick = {
                 viewModel.addFavoritePerformers(checkedStates.toList())
-                activity?.finish()
+                showSuccess = true
             }) {
             Text(
                 text = getString(context, R.string.asociate_performer_text),
                 color = Color.White
             )
         }
+        if (showSuccess) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Icon(
+                        Icons.Filled.Done,
+                        contentDescription = "Icono de éxito",
+                        tint = Color.Green,
+                        modifier = Modifier.size(50.dp)
+                    )
+                    Text(text = "Success!", color = Color.White, fontSize = 24.sp)
+
+                }
+            }
+
+            LaunchedEffect(key1 = showSuccess) {
+                delay(DELAY_TIME) // Espera 2 segundos
+                activity?.finish()
+            }
+        }
     }
+}
+
+@Composable
+fun ShowNotFoundArtistError() {
+    Text(text = "No se encontraron artistas")
 }
 

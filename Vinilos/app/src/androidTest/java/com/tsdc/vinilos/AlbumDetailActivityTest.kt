@@ -41,10 +41,10 @@ class AlbumDetailActivityTest {
 
     @Test
     fun testAlbumDetailTitle() {
-        // Add a delay to give time for the view to load
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Albumes").performClick()
+        Thread.sleep(2000)
         val errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
         if (errorNode.isDisplayed()) {
             errorNode.assertIsDisplayed()
@@ -115,6 +115,7 @@ class AlbumDetailActivityTest {
 
         activityRule.onNodeWithText("Visitante").performClick()
         activityRule.onNodeWithText("Albumes").performClick()
+        Thread.sleep(2000)
         val errorNode = activityRule.onNodeWithText("No se encontraron álbumes para mostrar")
         if (errorNode.isDisplayed()) {
             errorNode.assertIsDisplayed()
