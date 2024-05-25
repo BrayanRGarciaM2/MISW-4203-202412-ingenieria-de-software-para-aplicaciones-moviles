@@ -19,8 +19,8 @@ data class Album(
     val description: String,
     val genre: String,
     val recordLabel: String,
-    val performers: List<Artist> = listOf(),
-    val tracks: List<Song> = listOf()
+    var performers: List<Artist> = listOf(),
+    var tracks: List<Song> = listOf()
 ) : Parcelable
 
 data class AlbumList(val results: List<Album> = listOf())
@@ -83,7 +83,7 @@ fun Album.toAlbumEntity(): AlbumEntity {
         description = this.description,
         genre = this.genre,
         recordLabel = this.recordLabel,
-        performers = this.performers,
-        tracks = this.tracks
+        performers = this.performers ?: listOf(),
+        tracks = this.tracks ?: listOf()
     )
 }

@@ -109,7 +109,6 @@ class CollectorLogInActivity : ComponentActivity() {
                                     value = collectorUser,
                                     onValueChange = { collectorUser = it },
                                     label = { Text(text = "Digite su correo") },
-                                    //isError = isError,
                                     supportingText = {
                                         if (isError) {
                                             if (collectorUser == "") {
@@ -177,4 +176,3 @@ class CollectorLogInActivity : ComponentActivity() {
         }
     }
 }
-
