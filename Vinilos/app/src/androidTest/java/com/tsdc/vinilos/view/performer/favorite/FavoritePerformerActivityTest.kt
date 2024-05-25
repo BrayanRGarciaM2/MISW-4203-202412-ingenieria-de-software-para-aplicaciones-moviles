@@ -38,9 +38,9 @@ class FavoritePerformerActivityTest {
     @Test
     fun testSelectAFavoriteArtist() {
         initSteps()
-        Thread.sleep(1000)
-        activityRule.onNodeWithText("Agregar artista").assertIsDisplayed()
-        activityRule.onNodeWithText("Agregar artista").performClick()
+        Thread.sleep(2000)
+        activityRule.onNodeWithText("Agregar artista", useUnmergedTree = true).assertIsDisplayed()
+        activityRule.onNodeWithText("Agregar artista", useUnmergedTree = true).performClick()
         Thread.sleep(3000)
         activityRule.onAllNodesWithTag("CheckboxFavoritePerformerItem").onFirst().performClick()
         activityRule.onNodeWithText("Asociar artista").performClick()

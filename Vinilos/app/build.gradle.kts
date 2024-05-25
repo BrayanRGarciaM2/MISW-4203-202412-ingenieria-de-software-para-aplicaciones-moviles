@@ -75,7 +75,6 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.0")
-    implementation("androidx.test.ext:junit-ktx:1.1.5")
     implementation("androidx.room:room-runtime:$room_version")
     // To use Kotlin annotation processing tool (kapt)
     kapt("androidx.room:room-compiler:$room_version")

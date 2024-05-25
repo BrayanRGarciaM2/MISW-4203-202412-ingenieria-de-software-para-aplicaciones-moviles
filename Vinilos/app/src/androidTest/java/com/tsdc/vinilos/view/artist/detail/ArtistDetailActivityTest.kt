@@ -2,7 +2,6 @@ package com.tsdc.vinilos.view.artist.detail
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onAllNodesWithContentDescription
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithTag
@@ -30,7 +29,7 @@ class ArtistDetailActivityTest {
         Thread.sleep(3000)
         val artist = activityRule.onAllNodesWithTag("ArtistaListItem").onFirst()
         artist.assertIsDisplayed()
-        val name = activityRule.onAllNodesWithContentDescription("Image").onFirst()
+        val name = activityRule.onAllNodesWithTag("imagen", true).onFirst()
         name.performClick()
         Thread.sleep(3000)
         activityRule.onNodeWithTag("ArtistDetailScreen").assertIsDisplayed()
