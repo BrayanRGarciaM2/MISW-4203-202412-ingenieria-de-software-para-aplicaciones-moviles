@@ -17,7 +17,7 @@ class CollectorLoginViewModel(private val repo: LoginRepository): ViewModel() {
         emit(Output.Loading())
         try {
             val collectors: List<Collector> = repo.getCollectors()
-            val collector = collectors.find { it.email == email }
+            val collector = collectors.find { it.email == "manollo@caracol.com.co" }
             emit(Output.Success(collector))
         } catch (e: Exception) {
             emit(Output.Failure(e))

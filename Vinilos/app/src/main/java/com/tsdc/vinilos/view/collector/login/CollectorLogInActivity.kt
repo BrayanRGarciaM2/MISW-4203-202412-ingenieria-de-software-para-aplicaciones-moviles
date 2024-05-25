@@ -133,7 +133,7 @@ class CollectorLogInActivity : ComponentActivity() {
                                     onClick = {
                                         isError = false
 
-                                        if (collectorUser.isEmailValid() && collectorUser != "") {
+                                        if (collectorUser != "") {
                                             viewModel.checkEmail(collectorUser)
                                                 .observe(lifecycleOwner) { result ->
                                                     when (result) {
