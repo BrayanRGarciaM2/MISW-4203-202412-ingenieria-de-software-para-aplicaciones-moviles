@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
@@ -36,7 +35,7 @@ fun AlbumDetailBar(album: Album?) {
             ) {
 
                 Text(
-                    text = album?.performers?.first()?.name.orEmpty(),
+                    text = album?.performers?.firstOrNull()?.name.orEmpty(),
                     color = Color.White,
                     style = TextStyle(
                         fontWeight = FontWeight.SemiBold,

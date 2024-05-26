@@ -13,4 +13,7 @@ interface IAlbumDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveAlbum(album: AlbumEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun createAlbum(album: AlbumEntity)
 }

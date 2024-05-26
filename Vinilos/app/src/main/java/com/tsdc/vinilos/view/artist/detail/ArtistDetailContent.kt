@@ -81,7 +81,7 @@ fun ArtistDetailMainContent(artist: Artist?) {
     bitmap?.let {
         Image(
             painter = BitmapPainter(it.asImageBitmap()),
-            contentDescription = artist?.description,
+            contentDescription = "Artist image",
             modifier = Modifier
                 .size(200.dp)
                 .testTag("ArtistDetailImage")

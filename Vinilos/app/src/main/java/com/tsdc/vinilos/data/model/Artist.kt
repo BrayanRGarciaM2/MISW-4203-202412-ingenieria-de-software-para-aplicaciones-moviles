@@ -12,5 +12,6 @@ data class Artist(
     val description: String,
     val birthDate: Date?,
     val createDate: Date?,
-    val performerPrizes: List<PerformerPrize>?
-) : Parcelable
+    val performerPrizes: List<PerformerPrize>?,
+
+    ) : Parcelable

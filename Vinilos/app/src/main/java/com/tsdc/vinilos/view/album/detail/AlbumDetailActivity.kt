@@ -3,7 +3,6 @@ package com.tsdc.vinilos.view.album.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,7 +28,6 @@ class AlbumDetailActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Log.d("Pruebaaa", album.toString())
                     AlbumDetailScreen(album)
                 }
             }

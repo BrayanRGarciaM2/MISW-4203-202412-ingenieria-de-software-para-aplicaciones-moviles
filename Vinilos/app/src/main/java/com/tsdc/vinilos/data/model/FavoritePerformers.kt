@@ -10,5 +10,6 @@ data class FavoritePerformers(
     val name: String,
     val image: String,
     val description: String,
-    val birthDate: Date
+    val birthDate: Date?,
+    val creationDate: Date?,
 ): Parcelable
